@@ -1,0 +1,43 @@
+page-auth {
+  ion-col {
+
+    &:first-of-type {
+
+      flex: 0 0 70px;
+
+    }
+
+  }
+
+  #loginLogo{
+    height:18vh;
+  }
+
+  #loginHeader{
+    font-size: 24px;font-weight: 600;
+  }
+  .loginInputs{
+    margin-top: -15px;
+    border-bottom: 1px solid;
+  }
+
+  #signInBtn{
+    background-color: #b33224;
+    padding: 20px 60px 20px 60px;
+  }
+
+  #signUpLink{
+    color: #b33224; 
+    text-decoration: underline;
+  }
+
+  .socialBtns{
+    height:9vh;
+  }
+
+  .faces>button{
+    float: left;
+    margin-left: 7px;
+}
+
+}

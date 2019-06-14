@@ -1,0 +1,91 @@
+<ion-menu [content]="content">
+
+  <ion-header>
+
+    <ion-navbar>
+
+      <ion-row *ngIf="userProfile">
+        <ion-col id="sideMenuProfilePic">
+          <ion-avatar id="sideMenuImageAvatar" menuToggle start no-lines>
+            <img id="sideMenuImage" [src]="userProfile.photoURL">
+          </ion-avatar>
+        </ion-col>
+
+        <ion-col id="sideMenuNameCol">
+          <ion-title id="sideMenuName"> {{userProfile.displayName}}</ion-title>
+
+
+          <ion-title id="editProfile" *ngFor="let p of pages1" (click)="openPage(p)" menuToggle>
+            <p id="editProfileParagraph">
+              Edit Profile <ion-icon name="ios-arrow-round-forward" item-left></ion-icon>
+            </p>
+          </ion-title>
+
+
+
+
+        </ion-col>
+      </ion-row>
+
+
+
+    </ion-navbar>
+
+  </ion-header>
+
+
+  <ion-content style="color:white">
+
+
+    <div id="sideMenuLogo" text-center>
+      <img [src]="'assets/imgs/ll.png'" />
+    </div>
+
+
+
+    <ion-item-group>
+      <ion-item-divider id="yourGuide">Your Guide</ion-item-divider>
+      <ion-list>
+
+
+        <ion-item id="pageList" *ngFor="let p of pages" menuClose
+          (click)="openPage(p)">
+          <ion-icon [name]="p.icon" item-left></ion-icon>
+          <p> {{ p.title }}</p>
+
+        </ion-item>
+        <ion-item id="pageList" menuToggle (click)="logout()">
+          <ion-icon name="ios-exit" item-left></ion-icon>
+          <p> Logout</p>
+
+        </ion-item>
+
+
+        <ion-avatar id="matchstickLogo" onclick="window.open('https://matchstick.ug')">
+
+          <img [src]="'assets/imgs/ms.png'">
+
+        </ion-avatar>
+
+
+
+
+
+
+      </ion-list>
+
+    </ion-item-group>
+
+
+
+
+
+
+
+  </ion-content>
+
+</ion-menu>
+
+
+
+<ion-nav #content [root]="rootPage"></ion-nav>

@@ -1,0 +1,121 @@
+
+<ion-header>
+    <ion-navbar>
+      <ion-title text-center>Profile</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content class="transparent">
+
+
+    <ion-item no-lines style="background-color: transparent">
+
+        <ion-avatar id="uploadImage" (click)="openImagePickerCrop()">
+            <img [src]="imgurl">
+
+         </ion-avatar>
+     </ion-item>
+
+    <form (ngSubmit)="updateInfo()" [formGroup]="form">
+
+
+
+        <ion-row >
+            <ion-col>
+            <div>
+                <ion-label>First Name </ion-label>
+                <ion-item no-lines id="inputs" no-lines>
+                    <ion-input     type="text" value="{{firstname}}"  formControlName="fname"></ion-input>
+                </ion-item>
+
+              </div>
+
+            </ion-col>
+
+            <ion-col >
+                <div>
+                <ion-label>Last Name </ion-label>
+                <ion-item no-lines id="inputs" no-lines>
+                    <ion-input     type="text"  value="{{lastname}}" formControlName="lname"></ion-input>
+                </ion-item>
+
+              </div>
+
+
+            </ion-col>
+          </ion-row>
+
+          <br>
+
+
+          <ion-row >
+              <ion-col>
+              <div>
+                  <ion-label>Company </ion-label>
+                  <ion-item no-lines id="inputs" no-lines>
+                      <ion-input     type="text" value="{{company}}" formControlName="company"></ion-input>
+                  </ion-item>
+
+                </div>
+
+              </ion-col>
+
+              <ion-col >
+                  <div>
+                  <ion-label>Role </ion-label>
+                  <ion-item no-lines id="inputs" no-lines>
+                      <ion-input     type="text"  value="{{role}}" formControlName="role"></ion-input>
+                  </ion-item>
+
+                </div>
+
+
+              </ion-col>
+            </ion-row>
+
+
+            <br>
+
+
+            <ion-row >
+                <ion-col>
+                <div>
+                    <ion-label>Address </ion-label>
+                    <ion-item no-lines id="inputs" no-lines>
+                        <ion-input     type="text" value="{{address}}" formControlName="address"></ion-input>
+                    </ion-item>
+
+                  </div>
+
+                </ion-col>
+
+                <ion-col >
+                    <div>
+                    <ion-label>Mobile Number </ion-label>
+                    <ion-item no-lines id="inputs" no-lines>
+                        <ion-input     type="text" value="{{phone}}" formControlName="phone"></ion-input>
+                    </ion-item>
+
+                  </div>
+
+
+                </ion-col>
+              </ion-row>
+
+
+
+
+
+
+
+
+
+
+
+        <div text-center padding-horizontal>
+
+
+            <button ion-button round small padding type="submit">Save Changes</button>
+        </div>
+    </form>
+</ion-content>

@@ -1,0 +1,124 @@
+page-home {
+
+  .faces>ion-avatar{
+    float: left;
+    margin-left: 7px;
+}
+
+ion-content{
+  background-color: #efefef !important;
+}
+
+#menuToggleIcon{
+  color:white;
+  background-color:rgba(0, 0, 0, 0.1);
+
+  
+  font-size: 36px;
+}
+
+
+  .dateTabs {
+    background-color: #b33224;
+
+    margin-top: -1px;
+  }
+
+  .segment-button {
+    border-color: transparent !important;
+    font-size: 16px;
+    color: white !important;
+    opacity: 0.8;
+    padding-bottom: 15px;
+  }
+
+
+  .segment-ios .segment-button.segment-activated {
+
+    background-color: #b33224;
+    font-size: 18px !important;
+    opacity: 1;
+  
+  }
+
+ #leftTab{
+
+  border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important;
+ }
+
+ #rightTab{
+
+  border-top-right-radius: 0px !important; border-bottom-right-radius: 0px !important;
+}
+
+.listItems{
+  background-color: transparent;
+}
+
+.listItems div{
+  padding:10px;
+}
+
+.listItems div p{
+  color:#b33224; 
+  font-weight: 600;
+}
+  ion-col {
+
+    &:first-of-type {
+
+      flex: 0 0 40px;
+
+    }
+  }
+
+
+  .fakeItem {
+
+    @keyframes animatedBar {
+      0% {
+        background-position: -406px 0;
+      }
+
+      100% {
+        background-position: 0 0;
+      }
+    }
+
+    border-bottom:1px solid #bdbdbd;
+
+    h2,
+    h3,
+    p {
+      background-color: lightgrey;
+      opacity: 0.5;
+      height: 1em;
+      margin-top: 10px;
+      position: relative;
+      background: linear-gradient(to right, #dddddd, #EEEEEE);
+      animation: animatedBar 700ms linear infinite;
+
+      &:after {
+        position: absolute;
+        display: block;
+        content: '';
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background-color: white;
+      }
+    }
+
+    h2:after {
+      width: 65%;
+    }
+
+    h3:after {
+      width: 60%;
+    }
+
+    p:after {
+      width: 40%;
+    }
+  }
+}

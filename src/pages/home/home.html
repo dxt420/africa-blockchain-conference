@@ -1,0 +1,109 @@
+<ion-header>
+
+  <ion-navbar text-center>
+
+
+
+    <button ion-button menuToggle start>
+      <ion-icon id="menuToggleIcon"  name="menu"></ion-icon>
+    </button>
+
+    <ion-title>ABC Agenda</ion-title>
+
+  </ion-navbar>
+
+
+  <ion-segment [(ngModel)]="abc" class="dateTabs" mode="ios">
+
+    <ion-segment-button id="leftTab" value="feed">
+      WED 03 JULY
+    </ion-segment-button>
+    <ion-segment-button id="rightTab" value="social">
+      THUR 04 JULY
+    </ion-segment-button>
+
+  </ion-segment>
+
+</ion-header>
+
+
+
+
+<ion-content>
+
+    <div>
+
+    <div [ngSwitch]="abc">
+      <div *ngSwitchCase="'feed'">
+
+        <div *ngIf="data1">
+          <ion-item-group>
+
+
+            <ion-item class="listItems" text-wrap (click)="openItem(a,'SpeakerDetailsPage')" *ngFor="let a of data1.slice().reverse(); let i = index;">
+
+              <div>
+                <p>{{ a.activityDetails.time }}</p>
+                <h2> {{ a.title }} </h2>
+              </div>
+
+            </ion-item>
+
+          </ion-item-group>
+        </div>
+
+        <div *ngIf="!data1">
+          <ion-item no-lines class="fakeItem" *ngFor="let post of fakeUsers; let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+
+            <h2></h2>
+
+            <h1></h1>
+            <p></p>
+
+          </ion-item>
+
+        </div>
+
+
+      </div>
+
+
+      <div *ngSwitchCase="'social'">
+
+        <div *ngIf="data2">
+          <ion-item-group>
+
+
+            <ion-item  class="listItems" text-wrap (click)="openItem(a,'SpeakerDetailsPage')" *ngFor="let a of data2.slice().reverse(); let i = index;">
+
+              <div>
+                <p >{{ a.activityDetails.time }}</p>
+                <h2> {{ a.title }} </h2>
+              </div>
+
+            </ion-item>
+
+          </ion-item-group>
+        </div>
+
+        <div *ngIf="!data2">
+          <ion-item no-lines class="fakeItem" *ngFor="let post of fakeUsers; let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+
+            <h2></h2>
+
+            <h1></h1>
+            <p></p>
+
+          </ion-item>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</ion-content>

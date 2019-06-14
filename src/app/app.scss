@@ -1,0 +1,224 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+ion-icon {
+  &[class*="custom-"] {
+      margin: 0 5px 0 0;
+      vertical-align: middle;
+      $sz: 20px;
+      width: $sz;
+      height: $sz;
+  } // custom icons
+  &[class*="notification"][ng-reflect-is-active="true"] {
+      background: url("../assets/imgs/icons/android/abc-app-attendeemdpi.png") no-repeat 50% 50%;
+      background-size: contain;
+  }//in case of active
+  &[class*="notification"][ng-reflect-is-active="false"] {
+      background: url("../assets/imgs/icons/android/abc-app-attendeemdpi.png") no-repeat 50% 50%;
+      background-size: contain;
+  }//in case of inactive
+  &[class*="event"] {
+      background: url("../assets/imgs/icons/android/abc-app-eventmdpi.png") no-repeat 50% 50%;
+      background-size: contain;
+  }
+  &[class*="chat"] {
+    background: url("../assets/imgs/icons/android/abc-app-chatmdpi.png") no-repeat 50% 50%;
+    background-size: contain;
+}
+&[class*="card"] {
+  background: url("../assets/imgs/icons/android/abc-app-biz\ cardmdpi.png") no-repeat 50% 50%;
+  background-size: contain;
+}
+&[class*="attendee"] {
+  background: url("../assets/imgs/icons/android/abc-app-notificationmdpi.png") no-repeat 50% 50%;
+  background-size: contain;
+}
+}
+
+
+.toolbar-background{
+  background-color:#b33224;
+  color:white;
+}
+
+.toolbar-title-md #appp{
+
+  font-size: 1.5rem;
+
+}
+
+
+
+
+
+
+
+
+
+#sideMenuProfilePic{
+  -webkit-flex: 0 0 70px;
+  flex: 0 0 70px;
+}
+
+
+
+
+#sideMenuImage{
+  height: auto;
+  width: 80%;
+  border-radius: 50%;
+}
+
+#sideMenuImageAvatar {
+
+  padding: 5%;
+ 
+}
+ #sideMenuName {
+
+  margin-right: 0 !important;
+  padding-top: 2px;
+  padding: 0px;
+  }
+
+.ios #sideMenuName {
+
+  margin-top: -12px;
+  }
+
+  #editProfile{
+    font-size:1.2rem !important;margin-right: 0 !important;
+    
+  }
+  #editProfileParagraph{
+  color:black; margin-top: 5px;font-size: 1.1rem;
+  padding-top: 20px;
+  }
+
+  #sideMenuNameCol{
+    margin-left: -22px;
+  }
+
+  #sideMenuLogo{
+    border-bottom: 1px solid #dddddd;
+  }
+
+  #sideMenuLogo img{
+    height:15vh;
+  }
+  #yourGuide{
+    font-weight: 600;
+  }
+  #pageList{
+    background-color: rgba(0, 0, 0, 0);font-weight: normal;
+  }
+
+  #pageList p{
+    margin-left: 10px;
+  }
+
+  #matchstickLogo{
+    width: 50%;margin-left:30%;margin-top: 30px;bottom:10px;
+  }
+
+
+
+
+ion-title{
+  margin-right: 44px;
+}
+
+
+
+ion-header ion-icon.back-button-icon.icon {
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+// iPhone XR
+/* 1792x828px at 326ppi */
+@media only screen 
+    and (device-width : 414px) 
+    and (device-height : 896px) 
+    and (-webkit-device-pixel-ratio : 2) { 
+      #editProfile{
+        padding: 0px;
+        
+      }
+      #editProfileParagraph{
+        padding-top: 20px;
+      }
+
+      .ios #sideMenuName {
+
+        margin-top: -22px !important;
+        }
+
+        #sideMenuImage{
+          height: 12vh;
+        }
+    }
+
+
+
+// iPhone XS
+/* 2436x1125px at 458ppi */
+@media only screen 
+    and (device-width : 375px) 
+    and (device-height : 812px) 
+    and (-webkit-device-pixel-ratio : 3) { 
+      #editProfile{
+        padding: 0px;
+        
+      }
+      #editProfileParagraph{
+        padding-top: 20px;
+      }
+
+      .ios #sideMenuName {
+
+        margin-top: -22px !important;
+        }
+    }
+
+
+// iPhone XS Max
+/* 2688x1242px at 458ppi */
+@media only screen 
+    and (device-width : 414px) 
+    and (device-height : 896px) 
+    and (-webkit-device-pixel-ratio : 3) { 
+      #editProfile{
+        padding: 0px;
+        
+      }
+      #editProfileParagraph{
+        padding-top: 0px;
+      }
+
+      .ios #sideMenuName {
+
+        margin-top: -22px !important;
+        }
+    }

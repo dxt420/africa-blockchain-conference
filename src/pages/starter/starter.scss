@@ -1,0 +1,21 @@
+page-starter {
+
+  ion- img {
+    height: 5vh !important;
+    width: auto !important;
+  }
+
+  ion-slides{
+    background-image: linear-gradient(to bottom, #b332248a 0%, #212527f8 100%);
+
+  }
+
+  #slide1{
+    background-image: url('../assets/imgs/1.png');
+  }
+
+  #slide2{
+    background-image: url('../assets/imgs/2.png');
+  }
+
+}

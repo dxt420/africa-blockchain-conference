@@ -1,0 +1,49 @@
+
+<ion-header>
+  <ion-navbar text-center>
+      <button  ion-button menuToggle start>
+          <ion-icon style="color:white;background-color:rgba(red, green, blue, 0.1)" name="menu"></ion-icon>
+        </button>
+
+    <ion-title >Speakers</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="data">
+    <ion-item no-lines class="list" (click)="openItem(post,'SpeakerDetailsPage')" *ngFor="let post of data; let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'"  >
+        <ion-avatar item-start>
+          <img src="{{ post.featuredImage.sourceUrl }}">
+        </ion-avatar>
+        <h2>{{ post.title }}</h2>
+
+
+
+      <p>{{ post.speakerDetails.role }}, {{ post.speakerDetails.company }}</p>
+
+
+
+
+
+      </ion-item>
+    </div>
+
+      <div *ngIf="!data">
+        <ion-item no-lines class="fakeItem" *ngFor="let post of fakeUsers; let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'"  >
+          <ion-avatar item-start>
+           
+          </ion-avatar>
+          <h2></h2>
+
+
+
+        <p></p>
+
+
+
+
+
+        </ion-item>
+
+      </div>
+</ion-content>

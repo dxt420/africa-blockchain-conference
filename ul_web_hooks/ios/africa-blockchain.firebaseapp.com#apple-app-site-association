@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "<YOUR_TEAM_ID_FROM_MEMBER_CENTER>.com.abcug19.app",
+        "paths": [
+          "/__/auth/callback"
+        ]
+      }
+    ]
+  }
+}

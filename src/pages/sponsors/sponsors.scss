@@ -1,0 +1,73 @@
+page-sponsors {
+
+  .list{
+    border-bottom:1px solid #bdbdbd;
+  }
+
+  .list img{
+  
+    max-height:40px;width:auto; float:left;
+  }
+
+  .list h2{
+  
+    width: 80%; margin-left: 12%;padding: 10px;
+  }
+    .even{
+        background-color: #dddd;
+      }
+      .odd{
+
+        background-color: white;
+      }
+
+
+      .fakeItem {
+        border-bottom:1px solid #bdbdbd;
+
+        @keyframes animatedBar {
+          0% {
+            background-position: -406px 0;
+          }
+    
+          100% {
+            background-position: 0 0;
+          }
+        }
+    
+        h2,
+        h3,
+        p {
+          background-color: lightgrey;
+          opacity: 0.5;
+          height: 1em;
+          margin-top: 10px;
+          position: relative;
+          background: linear-gradient(to right, #dddddd, #EEEEEE);
+          animation: animatedBar 700ms linear infinite;
+    
+          &:after {
+            position: absolute;
+            display: block;
+            content: '';
+            right: 0;
+            bottom: 0;
+            top: 0;
+            background-color: white;
+          }
+        }
+    
+        h2:after {
+          width: 65%;
+        }
+    
+        h3:after {
+          width: 60%;
+        }
+    
+        p:after {
+          width: 40%;
+        }
+      }
+
+}

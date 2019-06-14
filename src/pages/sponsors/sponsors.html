@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>Sponsors</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <div *ngIf="data">
+
+  <ion-item no-lines  class="list" *ngFor="let post of data; let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+
+      <img src="{{ post.featuredImage.sourceUrl }}">
+
+    <h2>{{ post.title }}</h2>
+
+  </ion-item>
+
+</div>
+
+<div *ngIf="!data">
+
+    <ion-item no-lines class="fakeItem" *ngFor="let post of fakeUsers; let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+      <ion-avatar item-start>
+        <!-- <img src=""> -->
+      </ion-avatar>
+      <h2></h2>
+
+    </ion-item>
+
+  </div>
+</ion-content>

@@ -1,0 +1,60 @@
+<ion-header>
+
+  <ion-navbar text-center>
+    <ion-title>Speaker Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content  padding>
+
+
+
+
+    <ion-item id="profileImage" no-lines>
+
+      
+         <img src="{{ xx.featuredImage.sourceUrl }}">
+  
+    </ion-item>
+    <div >
+        <ion-item class="labels"   no-lines>
+            <ion-label > Name</ion-label>
+        </ion-item>
+        <p padding class="dataTitle">{{ xx.title }}</p>
+
+        <ion-item class="labels"   no-lines>
+            <ion-label > Position</ion-label>
+
+        </ion-item>
+        <p padding class="data">{{xx.speakerDetails.role}}</p>
+        <ion-item class="labels"   no-lines>
+            <ion-label > Company</ion-label>
+
+        </ion-item>
+        <p padding class="data">{{ xx.speakerDetails.company }}</p>
+
+        <ion-item class="labels"   no-lines>
+          <ion-label > Country</ion-label>
+
+      </ion-item>
+      <p padding class="data">{{ xx.speakerDetails.country }}</p>
+
+        <br>
+      </div>
+
+
+
+  <!-- <div *ngIf="xx.bio"  style="border-radius:10px;" class="transparent" padding>
+    <h3 style="color:#00b7ff;">Bio</h3>
+    <p>{{ xx.speakerDetails.bio }}</p>
+
+    <br>
+
+
+
+  </div> -->
+
+
+</ion-content>

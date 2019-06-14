@@ -1,0 +1,8 @@
+{
+  "name": "ABC",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "id": "b1ad6f54"
+}

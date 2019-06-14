@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title text-center>Register an Account</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+
+      <ion-item id="uploadImage" no-lines>
+
+         <ion-avatar (click)="openImagePickerCrop()">
+             <img [src]="imgurl">
+
+          </ion-avatar>
+      </ion-item>
+
+    <form (ngSubmit)="register()" [formGroup]="registerForm">
+
+        <ion-label>First Name </ion-label>
+        <ion-input  style="margin-top: -15px;border-bottom: 1px solid;" type="text" formControlName="fname" ></ion-input>
+
+        <ion-label>Last Name </ion-label>
+    <ion-input  style="margin-top: -15px;border-bottom: 1px solid;" type="text" formControlName="lname" ></ion-input>
+
+
+    <ion-label>Email </ion-label>
+    <ion-input  style="margin-top: -15px;border-bottom: 1px solid;" type="email" formControlName="email" ></ion-input>
+
+
+
+
+      <ion-label>Create Password </ion-label>
+      <ion-input style="margin-top: -15px;border-bottom: 1px solid;" type="password" formControlName="password" ></ion-input>
+
+
+      <br>
+
+    <div text-center>
+
+        <div text-center style="color:red;" class="form-error">{{signupError}}</div>
+
+      <button ion-button round small padding [disabled]="!registerForm.valid"  type="submit">Sign Up</button>
+
+
+
+
+  </div>
+
+  </form>
+
+
+
+
+  </ion-content>

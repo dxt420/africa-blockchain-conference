@@ -1,0 +1,23 @@
+page-profiler {
+
+  #uploadImage img {
+    height: 80px;
+    width: 80px;
+  }
+
+  #uploadImage {
+    width: 40%;
+    margin-left: 35%;
+
+  }
+
+  .inputs{
+    background-color: transparent;
+    padding-left:0px;
+  }
+
+  .inputs ion-input{
+    background-color: pink;
+  }
+
+}
