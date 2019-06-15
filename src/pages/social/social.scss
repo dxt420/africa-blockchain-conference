@@ -9,4 +9,19 @@ page-social {
     }
   }
 
+  .timeline-Header {
+  
+    display: none;
+}
+
+.timeline-Footer {
+  
+  display: none !important;
+}
+
+.timeline-Body-notification {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
 }

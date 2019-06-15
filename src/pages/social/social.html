@@ -6,7 +6,7 @@
 
     <ion-navbar text-center>
         <button  ion-button menuToggle start>
-            <ion-icon style="color:white;background-color:rgba(red, green, blue, 0.1)" name="menu"></ion-icon>
+            <ion-icon style="color:white;" name="menu"></ion-icon>
           </button>
 
           <ion-title> Feed</ion-title>
@@ -16,9 +16,11 @@
   </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
-  <p text-center>No feed yet</p>
+ 
 
-  <!-- <div [innerHTML]="theHtmlString"></div> -->
+  <div [innerHTML]="theHtmlString"></div>
+  <!-- <iframe  [src]="theHtmlString"> -->
+    <!-- </iframe> -->
 </ion-content>

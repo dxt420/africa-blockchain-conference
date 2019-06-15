@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DomSanitizer} from '@angular/platform-browser';
 
 
 
@@ -15,18 +16,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-social',
   templateUrl: 'social.html',
 })
-export class SocialPage {
+export class SocialPage implements AfterViewInit{
 
   theHtmlString;
 
   constructor(public navCtrl: NavController,
-
+              private sanitizer: DomSanitizer,
               public navParams: NavParams) {
 
 
 
 
-                // this.theHtmlString = this.sanitizer.bypassSecurityTrustUrl(`<a class="twitter-timeline" data-theme="light" data-link-color="#b33224" href="https://twitter.com/CryptoSavannah?ref_src=twsrc%5Etfw">Tweets by CryptoSavannah</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`)
+                this.theHtmlString = this.sanitizer.bypassSecurityTrustHtml(`<a class="twitter-timeline" data-theme="light" data-link-color="#b33224" href="https://twitter.com/CryptoSavannah?ref_src=twsrc%5Etfw"> <p text-center>📝</p></a> `)
+                // this.theHtmlString = this.sanitizer.bypassSecurityTrustResourceUrl(`https://twitframe.com/show?url=https://twitter.com/CryptoSavannah?ref_src=twsrc%5Etfw`)
 
 
 
@@ -37,4 +39,22 @@ export class SocialPage {
     console.log('ionViewDidLoad SocialPage');
   }
 
+
+  ngAfterViewInit() {
+    // @ts-ignore
+    twttr.widgets.load();
+
+
+    // let ngJs: any;
+    //     const ngFjs = document.getElementsByTagName('script')[0];
+    //     const ngP = 'https';
+
+    //     if (!document.getElementById('twitter-wjs')) {
+    //       ngJs = document.createElement('script');
+    //       ngJs.id = 'twitter-wjs';
+    //       ngJs.src = ngP + '://platform.twitter.com/widgets.js';
+    //       ngFjs.parentNode.insertBefore(ngJs, ngFjs);
+
+    //     }
+}
 }
