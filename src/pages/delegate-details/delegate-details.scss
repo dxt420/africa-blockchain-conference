@@ -1,0 +1,41 @@
+page-delegate-details {
+
+     #profileImage ion-avatar {
+    width: 40%;
+    margin-left:30%;
+    // height: 100px;
+  }
+
+  #profileImage {
+    background-color: transparent;
+  }
+
+
+  .labels{
+    background-color: transparent;
+  }
+
+
+  .labels ion-label{
+    color:#adaaaa;width:20%;font-size: 80%;
+  }
+
+  .data{
+   
+    font-size: 100%;width:75%;margin-bottom: -20px;margin-top: -20px
+  }
+
+  .dataTitle{
+    width:75%;font-size: 110%;margin-bottom: -20px;margin-top: -20px;
+
+  }
+
+   
+
+
+ion-title{
+  margin-right: 20%;
+}
+
+
+}

@@ -64,7 +64,6 @@ export class SpeakersPage implements OnInit {
       speaker: item
     });
 
-
   }
 
 }

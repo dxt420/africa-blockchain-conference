@@ -44,7 +44,9 @@
 
               <div>
                 <p>{{ a.activityDetails.time }}</p>
-                <h2> {{ a.title }} </h2>
+                <h2> {{ cleanHTML(a.title) }} </h2>
+            
+                
               </div>
 
             </ion-item>
@@ -78,7 +80,7 @@
 
               <div>
                 <p >{{ a.activityDetails.time }}</p>
-                <h2> {{ a.title }} </h2>
+                <h2> {{ cleanHTML(a.title) }} </h2>
               </div>
 
             </ion-item>

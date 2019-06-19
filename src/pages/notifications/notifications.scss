@@ -1,18 +1,9 @@
 page-notifications {
 
-  #jj img {
-    height: auto;
-
-    border-radius: 50%;
+  .list{
+    border-bottom:1px solid #bdbdbd;
   }
 
-  #jj {
-
-
-
-    padding: 0;
-    width: 100%;
-  }
   ion-col {
 
     &:first-of-type {

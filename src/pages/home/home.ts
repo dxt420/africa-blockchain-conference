@@ -113,14 +113,11 @@ export class HomePage implements OnInit {
     }).subscribe(({ data, loading }) => {
       this.loading = loading;
       this.data1 = data['wed'].nodes[0]['a'].nodes;
-
-
-
       this.data2 = data['thur'].nodes[0]['a'].nodes;
 
 
-      console.log(data['wed'].nodes[0]['a'].nodes);
-      console.log(data['thur'].nodes[0]['a'].nodes);
+      // console.log(data['wed'].nodes[0]['a'].nodes);
+      // console.log(data['thur'].nodes[0]['a'].nodes);
 
 
 
@@ -143,6 +140,12 @@ export class HomePage implements OnInit {
     });
 
 
+  }
+
+  cleanHTML(html: string ){
+    var txt = document.createElement(`textarea`);
+txt.innerHTML = html
+return txt.value;
   }
 
 }

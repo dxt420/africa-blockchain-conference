@@ -230,9 +230,57 @@ export class AuthProvider {
     this.loading.dismissAll();
   }
 
+  getDelegates() {
+    return firebase.database().ref().child("users").once('value').then(function (snapshot) {
+      return (snapshot.val());
+
+    });;
+
+  }
+
+  getNotifications() {
+    return firebase.database().ref().child("notifications").child(this.user.uid).once('value').then(function (snapshot) {
+      return (snapshot.val());
+
+    });;
+
+  }
+
+
+  getPendingCards() {
+    return firebase.database().ref().child("businessCards").child(this.user.uid).once('value').then(function (snapshot) {
+      return (snapshot.val().pending);
+
+    });;
+
+  }
+
+  getReceivedCards() {
+    return firebase.database().ref().child("businessCards").child(this.user.uid).once('value').then(function (snapshot) {
+      return (snapshot.val().received);
+
+    });;
+
+  }
+
+  getApprovedCards() {
+    return firebase.database().ref().child("businessCards").child(this.user.uid).once('value').then(function (snapshot) {
+      return (snapshot.val().approved);
+
+    });;
+
+  }
 
   getUserProfile() {
     return firebase.database().ref().child("users").child(this.user.uid).once('value').then(function (snapshot) {
+      return (snapshot.val());
+
+    });;
+
+  }
+
+  getOtherUserProfile(id) {
+    return firebase.database().ref().child("users").child(id).once('value').then(function (snapshot) {
       return (snapshot.val());
 
     });;
@@ -296,6 +344,28 @@ export class AuthProvider {
     });;
 
   }
+
+  getUserToken() {
+    
+
+    return firebase.database().ref().child("users").child(this.user.uid).once('value').then(function (snapshot) {
+      return (snapshot.val().fcmtoken);
+
+    });;
+
+  }
+
+  getReceiverToken(id) {
+    
+
+    return firebase.database().ref().child("users").child(id+"").once('value').then(function (snapshot) {
+      return (snapshot.val().fcmtoken);
+
+    });;
+
+  }
+
+  
 
   profileUpdate(credentials) {
     var ref = firebase.database().ref().child("users");

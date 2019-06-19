@@ -17,25 +17,42 @@
   </ion-header>
 
 
-<ion-content padding>
-
-    <p text-center>Retrieving List</p>
-
-    <!-- <ion-item no-lines style="border-bottom:1px solid #bdbdbd" class="transparent" *ngFor="let post of data; let i = index;"  >
-        <ion-avatar item-start>
-          <img src="{{ post.featuredImage.sourceUrl }}">
-        </ion-avatar>
-        <h2>{{ post.title }}</h2>
-      <p>{{ post.title }}, {{ speaker.info }}</p>
-
-      <button  ion-button item-end>
-          <ion-icon style="background-color:rgba(red, green, blue, 0.1)" name="chatbubbles"></ion-icon>
-        </button>
-
-
-      <button  ion-button item-end>
-          <ion-icon style="background-color:rgba(red, green, blue, 0.1)" name="bookmark"></ion-icon>
-        </button>
-
-      </ion-item> -->
-</ion-content>
+  <ion-content>
+    <div *ngIf="data">
+      <ion-item no-lines class="list" (click)="openItem(a,'DelegateDetailsPage')" *ngFor="let a of data; let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'"  >
+          <ion-avatar item-start>
+            <img src="{{ a.imageurl }}">
+          </ion-avatar>
+          <h2>{{ a.fname }} {{ a.lname }}</h2>
+  
+  
+        <div *ngIf="a.company">
+        <p>{{ a.role }}</p>
+        <p>{{ a.company }}</p>
+        </div>
+  
+  
+  
+  
+        </ion-item>
+      </div>
+  
+        <div *ngIf="!data">
+          <ion-item no-lines class="fakeItem" *ngFor="let post of fakeUsers; let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'"  >
+            <ion-avatar item-start>
+             
+            </ion-avatar>
+            <h2></h2>
+  
+  
+  
+          <p></p>
+  
+  
+  
+  
+  
+          </ion-item>
+  
+        </div>
+  </ion-content>

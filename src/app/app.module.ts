@@ -1,3 +1,4 @@
+import { BusinessCardsPageModule } from './../pages/business-cards/business-cards.module';
 import { SignupPageModule } from './../pages/signup/signup.module';
 import { SignupPage } from './../pages/signup/signup';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -19,6 +20,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { StarterPage } from '../pages/starter/starter';
 import { SocialPage } from '../pages/social/social';
 import { NotificationsPage } from '../pages/notifications/notifications';
+import { Badge } from '@ionic-native/badge';
 // import { DelegatesPage } from '../pages/delegates/delegates';
 
 
@@ -52,6 +54,7 @@ import { NotificationsPageModule } from '../pages/notifications/notifications.mo
 import { SocialPageModule } from '../pages/social/social.module';
 import { AuthPageModule } from '../pages/auth/auth.module';
 import { StarterPageModule } from '../pages/starter/starter.module';
+import { NotificationsProvider } from '../providers/notifications/notifications';
 // import { AuthPageModule } from '../pages/auth/auth.module';
 // import { HomePageModule } from '../pages/home/home.module';
 
@@ -101,7 +104,8 @@ firebase.initializeApp({
     SocialPageModule,
     AuthPageModule,
     SignupPageModule,
-    StarterPageModule
+    StarterPageModule,
+    BusinessCardsPageModule
 
 
 
@@ -137,7 +141,9 @@ firebase.initializeApp({
     Network,
     DataProvider,
     Crop,
-    ImagePicker
+    Badge,
+    ImagePicker,
+    NotificationsProvider
   ]
 })
 export class AppModule {

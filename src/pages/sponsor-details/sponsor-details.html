@@ -25,22 +25,13 @@
         <p padding class="dataTitle">{{ xx.title }}</p>
 
         <ion-item class="labels"   no-lines>
-            <ion-label > Position</ion-label>
+            <ion-label > Website</ion-label>
 
         </ion-item>
-        <p padding class="data">{{xx.speakerDetails.role}}</p>
-        <ion-item class="labels"   no-lines>
-            <ion-label > Company</ion-label>
-
-        </ion-item>
-        <p padding class="data">{{ xx.speakerDetails.company }}</p>
-
-        <ion-item class="labels"   no-lines>
-          <ion-label > Country</ion-label>
-
-      </ion-item>
-      <p padding class="data">{{ xx.speakerDetails.country }}</p>
-
+        <!-- <p padding onclick='window.open("{{xx.sponsorDetails.website}}")' class="data">{{xx.sponsorDetails.website}}</p> -->
+      
+        <p padding  class="data">{{xx.sponsorDetails.website}}</p>
+    
         <br>
       </div>
 

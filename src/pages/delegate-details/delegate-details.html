@@ -1,0 +1,73 @@
+<ion-header>
+
+  <ion-navbar text-center>
+    <ion-title>Delegate Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-item id="profileImage" no-lines>
+
+       <ion-avatar>
+        <img src="{{ xx.imageurl }}">
+    </ion-avatar>
+   </ion-item>
+
+    <div >
+        <ion-item class="labels"  no-lines>
+            <ion-label > Name</ion-label>
+        </ion-item>
+        <p padding class="dataTitle">{{ xx.fname }} {{ xx.lname }}</p>
+
+        <ion-item *ngIf="xx.role" class="labels"  no-lines>
+            <ion-label > Position</ion-label>
+
+        </ion-item>
+        <p padding class="data">{{xx.role}}</p>
+        <ion-item  *ngIf="xx.company" class="labels"  no-lines>
+            <ion-label > Company</ion-label>
+
+        </ion-item>
+        <p padding class="data">{{ xx.company }}</p>
+
+        <ion-item  *ngIf="xx.address" class="labels"  no-lines>
+          <ion-label > Address</ion-label>
+
+      </ion-item>
+      <p padding class="data">{{ xx.address }}</p>
+
+      <ion-item  *ngIf="xx.phone" class="labels"  no-lines>
+        <ion-label > Phone</ion-label>
+
+    </ion-item>
+    <p padding class="data">{{ xx.phone }}</p>
+
+        <br>
+      </div>
+
+
+ 
+
+    
+
+  <p padding class="data">
+    <ion-chip (click)="requestCard(xx)">
+      <ion-icon name="ios-apps"></ion-icon>
+      <ion-label>Request Business Card</ion-label>
+    </ion-chip>
+  </p>
+
+  
+
+
+
+    
+
+
+ 
+
+
+</ion-content>

@@ -1,3 +1,66 @@
 page-business-cards {
 
+    .list{
+        border-bottom:1px solid #bdbdbd;
+      }
+
+      .dateTabs {
+        background-color: #b33224;
+    
+        margin-top: -1px;
+      }
+    
+      .segment-button {
+        border-color: transparent !important;
+        font-size: 16px;
+        color: white !important;
+        opacity: 0.8;
+        padding-bottom: 15px;
+      }
+    
+    
+      .segment-ios .segment-button.segment-activated {
+    
+        background-color: #b33224;
+        font-size: 18px !important;
+        opacity: 1;
+      
+      }
+    
+     #leftTab{
+    
+      border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important;
+     }
+    
+     #rightTab{
+    
+      border-top-right-radius: 0px !important; border-bottom-right-radius: 0px !important;
+    }
+    #midTab{
+    
+        border-radius: 0px !important; 
+      
+      }
+    
+    .listItems{
+      background-color: transparent;
+    }
+    
+    .listItems div{
+      padding:10px;
+    }
+    
+    .listItems div p{
+      color:#b33224; 
+      font-weight: 600;
+    }
+      ion-col {
+    
+        &:first-of-type {
+    
+          flex: 0 0 40px;
+    
+        }
+      }
+    
 }

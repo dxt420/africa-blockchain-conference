@@ -15,7 +15,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SponsorDetailsPage {
 
+  xx;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.xx = navParams.get('sponsor');
   }
 
   ionViewDidLoad() {

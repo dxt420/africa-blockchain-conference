@@ -36,6 +36,9 @@ export class SponsorsPage implements OnInit{
             featuredImage{
               sourceUrl
             }
+            sponsorDetails{
+              website
+            }
           }
 
         }
@@ -49,7 +52,7 @@ export class SponsorsPage implements OnInit{
 
   openItem(item: any,page: string) {
     this.navCtrl.push(page.toString(), {
-      speaker: item
+      sponsor: item
     });
 
 
