@@ -3,20 +3,22 @@
     <ion-navbar>
       <ion-title text-center>Business Cards</ion-title>
     </ion-navbar>
+
+    <ion-segment [(ngModel)]="abc" class="dateTabs" mode="ios">
+      <ion-segment-button id="leftTab" value="a">
+        APPROVED
+      </ion-segment-button>
+      <ion-segment-button id="midTab" value="b">
+        RECEIVED
+      </ion-segment-button>
+      <ion-segment-button id="rightTab" value="c">
+        PENDING
+      </ion-segment-button>
+  
+    </ion-segment>
   </ion-header>
 
-  <ion-segment [(ngModel)]="abc" class="dateTabs" mode="ios">
-    <ion-segment-button id="leftTab" value="a">
-      APPROVED
-    </ion-segment-button>
-    <ion-segment-button id="midTab" value="b">
-      RECEIVED
-    </ion-segment-button>
-    <ion-segment-button id="rightTab" value="c">
-      PENDING
-    </ion-segment-button>
-
-  </ion-segment>
+  
 
 <ion-content padding>
 

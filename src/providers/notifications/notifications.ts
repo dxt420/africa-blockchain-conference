@@ -25,12 +25,22 @@ export class NotificationsProvider {
 
   saveNotificationToFirebase(id,notification) {
     var ref = firebase.database().ref().child("notifications").child(id);
+
+    var time = new Date()
+    
+    console.log(time)
+    
+    console.log(notification)
     var data = {
 
       title: notification.title,
       body:  notification.body,
-      time: notification.time
+      type: notification.type,
+      imgurl: notification.imgurl,
+      time: time+""
     }
+
+    console.log(data)
     ref.push(data).then(function (ref) {
       console.log("Notification Saved");
     
@@ -41,9 +51,10 @@ export class NotificationsProvider {
   }
 
 
-  requestCard(user,requestedUserName,requestedUserID,requestedUserToken,imgurl) {
+  requestCard(user,requestedUserName,requestedUserID,requestedUserToken,imgurl,time) {
 
  
+    
 
     let notifcationObj: any = {
       "notification": {
@@ -51,14 +62,15 @@ export class NotificationsProvider {
         "body" : requestedUserName + " has sent you a business card request",
         "sound": "default",
         "click_action": "FCM_PLUGIN_ACTIVITY",
-        "icon": "fcm_push_icon"
+        "icon": "fcm_push_icon",
+        
       },
       "data": {
         "title": "Business Card Request",
         "body" : requestedUserName + " has sent you a business card request",
-        "imgurl":imgurl,
+        "imgurl":imgurl+"",
         "type" : "BCard",
-        "time": new Date()
+        "time": time
       },
       "to": requestedUserToken,
       "priority": "high",
@@ -93,7 +105,9 @@ export class NotificationsProvider {
         console.log(error);
       });
 
-      this.saveNotificationToFirebase(requestedUserID,notifcationObj.data);
+      var time = new Date()
+
+      // this.saveNotificationToFirebase(requestedUserID,notifcationObj.data,time);
 
     }, (error) => {
       console.log('notification error -> ', error);
@@ -154,7 +168,8 @@ export class NotificationsProvider {
         console.log(error);
       });
 
-      this.saveNotificationToFirebase(requestedUserID,notifcationObj.data);
+      var time = new Date()
+      // this.saveNotificationToFirebase(requestedUserID,notifcationObj.data,time);
 
     }, (error) => {
       console.log('notification error -> ', error);

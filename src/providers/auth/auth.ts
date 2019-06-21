@@ -105,6 +105,7 @@ export class AuthProvider {
 
 
               // this.navCtrl.setRoot(AuthPage);
+              
             }
           }
         ]
@@ -249,7 +250,20 @@ export class AuthProvider {
 
   getPendingCards() {
     return firebase.database().ref().child("businessCards").child(this.user.uid).once('value').then(function (snapshot) {
-      return (snapshot.val().pending);
+   
+
+      return (snapshot.val() && snapshot.val().pending) || ' ';
+
+    });;
+
+  }
+
+
+  getPendingCardsTwo() {
+    return firebase.database().ref().child("businessCards").child(this.user.uid).child("pending").once('value').then(function (snapshot) {
+   
+
+      return (snapshot.val()) || ' ';
 
     });;
 
@@ -257,7 +271,9 @@ export class AuthProvider {
 
   getReceivedCards() {
     return firebase.database().ref().child("businessCards").child(this.user.uid).once('value').then(function (snapshot) {
-      return (snapshot.val().received);
+      // return (snapshot.val().received);
+
+      return (snapshot.val() && snapshot.val().received) || ' ';
 
     });;
 
@@ -265,7 +281,9 @@ export class AuthProvider {
 
   getApprovedCards() {
     return firebase.database().ref().child("businessCards").child(this.user.uid).once('value').then(function (snapshot) {
-      return (snapshot.val().approved);
+      // return (snapshot.val().approved);
+
+      return (snapshot.val() && snapshot.val().approved) || ' ';
 
     });;
 
@@ -274,6 +292,8 @@ export class AuthProvider {
   getUserProfile() {
     return firebase.database().ref().child("users").child(this.user.uid).once('value').then(function (snapshot) {
       return (snapshot.val());
+
+      
 
     });;
 

@@ -22,8 +22,11 @@ export class DelegateDetailsPage {
   requestPending;
   requestApproved;
 
+  
+
   firstname;
   lastname;
+  dp;
 
   constructor(public navCtrl: NavController, 
               public notifications: NotificationsProvider,
@@ -32,8 +35,14 @@ export class DelegateDetailsPage {
               public navParams: NavParams) {
         this.xx = navParams.get('delegate');
 
+        console.log(this.xx);
+
         auth.getFirstName().then(data=>{
           this.firstname = data;
+        });
+
+        auth.dp().then(data=>{
+          this.dp = data;
         });
     
       
@@ -42,81 +51,98 @@ export class DelegateDetailsPage {
           this.lastname = data;
         });
 
-        auth.getPendingCards().then(data=>{
-
-          console.log(data);
-
-
-          if( data && this.xx in data ) {
-            // do something
-            this.requestPending = "pending";
-          }
-          
-    
-        });
-
-
-        auth.getApprovedCards().then(data=>{
-
-          console.log(data);
-
-
-          if( data && this.xx in data ) {
-            // do something
-            this.requestApproved = "approved";
-          }
-          
-    
-        });
+      
        
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DelegateDetailsPage');
+
+    this.auth.getPendingCards().then(data=>{
+
+      console.log(data);
+
+      
+      if( data != ' '){
+      for (var key in data) {
+        if( this.xx.key == data[key].userID ) {
+          // do something
+
+          this.requestPending = "pending";
+        }
+       
+    }
+  }
+
+      
+
+    });
+
+
+    this.auth.getApprovedCards().then(data=>{
+
+
+
+      console.log(data);
+
+      
+      if( data != ' '){
+      for (var key in data) {
+        if( this.xx.key == data[key].userID ) {
+          // do something
+
+          this.requestPending = "approved";
+        }
+       
+    }
+  }
+
+
+   
+      
+
+    });
   }
 
 
   requestCard(requestedUser){
     console.log(requestedUser);
-if(this.requestPending == "pending"){
- let alert = this.alertCtrl.create({
-              title: "Done Here",
-              message: "Business card request already sent",
-              buttons: [
-                {
-                  text: 'Okay',
-                  role: 'cancel'
-                }
-              ]
-            });
-    
-            alert.present();
-}else if(this.requestApproved == "approved"){
-  let alert = this.alertCtrl.create({
-    title: "Done Here",
-    message: "You already have this business card",
-    buttons: [
-      {
-        text: 'Okay',
-        role: 'cancel'
+    console.log(this.requestPending);
+      if(this.requestPending == "pending"){
+      let alert = this.alertCtrl.create({
+                    title: "Done Here",
+                    message: "Business card request already sent",
+                    buttons: [
+                      {
+                        text: 'Okay',
+                        role: 'cancel'
+                      }
+                    ]
+                  });
+          
+                  alert.present();
+      }else if(this.requestApproved == "approved"){
+        let alert = this.alertCtrl.create({
+          title: "Done Here",
+          message: "You already have this business card",
+          buttons: [
+            {
+              text: 'Okay',
+              role: 'cancel'
+            }
+          ]
+        });
+
+        alert.present();
       }
-    ]
-  });
-
-  alert.present();
-}
-else{
-  this.notifications.requestCard(this.auth.user, this.firstname + " " + this.lastname,requestedUser.id,requestedUser.fcmtoken,requestedUser.imgurl) 
-
-}
+      else{
+        var time = new Date() + ""
+        console.log(time)
+        this.notifications.requestCard(this.auth.user, this.firstname + " " + this.lastname,requestedUser.id,requestedUser.fcmtoken,this.dp,time) 
+        this.ionViewDidLoad();
+      }
   }
 
-  getReceiverToken(id){
-    this.auth.getReceiverToken(id).then(data=>{
-      return data;
-    });
-
-  }
 
 
 }

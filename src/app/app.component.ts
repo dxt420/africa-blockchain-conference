@@ -15,6 +15,8 @@ import { Push } from '@ionic-native/push';
 import { AppUpdate } from '@ionic-native/app-update';
 import { NetworkProvider } from '../providers/network/network';
 import { NotificationsProvider } from '../providers/notifications/notifications';
+import { NotificationsPage } from '../pages/notifications/notifications';
+import * as myGlobals from './globals'; 
 
 
 @Component({
@@ -124,57 +126,70 @@ export class MyApp {
 
           });
 
-          // this.fcm.onNotification().subscribe( data => {
+          this.fcm.onNotification().subscribe( data => {
 
 
-          //   console.log("In notification");
+            console.log("In notification");
+
+            // myGlobals.notificationsCount++;
+
+            console.log(data);
             
 
-          //   notifications.saveNotificationToFirebase(user.uid,data);
+            notifications.saveNotificationToFirebase(user.uid,data);
 
 
-          //   if (data.wasTapped) {
-          //     //Notification was received on device tray and tapped by the user.
-          //     console.log(JSON.stringify(data));
+            if (data.wasTapped) {
+              //Notification was received on device tray and tapped by the user.
+              console.log(JSON.stringify(data));
+      
+              this.nav.setRoot(TabsPage);
+      
+              let alert = this.alertCtrl.create({
+                title: data.title,
+                message: data.body,
+                buttons: [
+                  {
+                    text: 'Open in Notifications',
+                    handler: () => {
+                      this.nav.push('NotificationsPage');
+                    }
+                  },
+                  {
+                    text: 'Ignore',
+                    role: 'cancel'
+                  }
+                  
+
+                ]
+              });
+      
+              alert.present();
       
       
-          //     let alert = this.alertCtrl.create({
-          //       title: data.title,
-          //       message: data.body,
-          //       buttons: [
-          //         {
-          //           text: 'Open in Notifications',
-          //           role: 'cancel'
-          //         }
-          //       ]
-          //     });
       
-          //     alert.present();
+              
+            } else {
+              //Notification was received in foreground. Maybe the user needs to be notified.
+              console.log(JSON.stringify(data));
       
+              let alert = this.alertCtrl.create({
+                title: data.title,
+                message: data.body,
+                buttons: [
+                  {
+                    text: 'Done',
+                    role: 'cancel'
+                  }
+                ]
+              });
       
-      
-          //     this.nav.setRoot(NotificationsPage);
-          //   } else {
-          //     //Notification was received in foreground. Maybe the user needs to be notified.
-          //     console.log(JSON.stringify(data));
-      
-          //     let alert = this.alertCtrl.create({
-          //       title: data.title,
-          //       message: data.body,
-          //       buttons: [
-          //         {
-          //           text: 'Done',
-          //           role: 'cancel'
-          //         }
-          //       ]
-          //     });
-      
-          //     alert.present();
+              alert.present();
       
       
-          //     // this.nav.push('NotificationsPage', { profileId: data.profileId });
-          //   }
-          // });
+              // this.nav.push('NotificationsPage', { profileId: data.profileId });
+            }
+          });
 
           console.log(user);
 

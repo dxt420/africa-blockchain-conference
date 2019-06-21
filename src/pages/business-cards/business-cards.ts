@@ -17,14 +17,16 @@ import { NotificationsProvider } from '../../providers/notifications/notificatio
 })
 export class BusinessCardsPage {
 
-  pending;
-  received;
-  approved;
+
+  public pending: any[] = [];
+  public received: any[] = [];
+  public approved: any[] = [];
+  
 
   firstname;
   lastname;
 
-  abc: string = "approved";
+  abc: string = "a";
 
 
 
@@ -44,94 +46,35 @@ export class BusinessCardsPage {
                   this.lastname = data;
                 });
 
-    auth.getPendingCards().then(data=>{
 
-      console.log(data);
-      for(let key in data){
+                this.auth.getPendingCardsTwo().then(data=>{
 
-
-        auth.getOtherUserProfile(data[key].userID).then(data=>{
-         
-        
-
-          for(let key in data){
-            this.pending.push({
-              key: key,
-              fname: data[key].firstName,
-              lname: data[key].lastName,
-              company: data[key].company,
-              address: data[key].address,
-              phone: data[key].phone,
-              role: data[key].role,
-              email: data[key].email,
-              fcmtoken:data[key].fcmtoken
-            });
-          }
-    
-        });
-       
-      }
-
-    });
-
+                  console.log(data);
+            
+                  
+                  if( data != ' '){
+                  for (var key in data) {
+                  
+                      // do something
+                      console.log(data[key].userID);
+                      
+            
+                      this.auth.getOtherUserProfile(data[key].userID).then(data=>{
+                        console.log(data)
+                        this.pending.push(data);
+                       
+                      });
+            
+                   
+                }
+              }
+            
+                  
+            
+                });
+  
    
 
-    auth.getApprovedCards().then(data=>{
-
-      console.log(data);
-      for(let key in data){
-        auth.getOtherUserProfile(data[key].userID).then(data=>{
-         
-        
-
-          for(let key in data){
-            this.approved.push({
-              key: key,
-              fname: data[key].firstName,
-              lname: data[key].lastName,
-              company: data[key].company,
-              address: data[key].address,
-              phone: data[key].phone,
-              role: data[key].role,
-              email: data[key].email,
-              fcmtoken:data[key].fcmtoken
-            });
-          }
-    
-        });
-      }
-
-    });
-
-
-    auth.getReceivedCards().then(data=>{
-
-     
-
-      console.log(data);
-      for(let key in data){
-        auth.getOtherUserProfile(data[key].userID).then(data=>{
-         
-        
-
-          for(let key in data){
-            this.received.push({
-              key: key,
-              fname: data[key].firstName,
-              lname: data[key].lastName,
-              company: data[key].company,
-              address: data[key].address,
-              phone: data[key].phone,
-              role: data[key].role,
-              email: data[key].email,
-              fcmtoken:data[key].fcmtoken
-            });
-          }
-    
-        });
-      }
-
-    });
   }
 
   approve(a){
@@ -144,6 +87,94 @@ export class BusinessCardsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BusinessCardsPage');
+
+ 
+
+
+
+
+  //   this.auth.getApprovedCards().then(data=>{
+
+  //     console.log(data);
+
+      
+  //     if( data != ' '){
+  //     for (var key in data) {
+      
+  //         // do something
+
+  //         this.auth.getOtherUserProfile(data[key].userID).then(data=>{
+         
+        
+
+  //           for(let key in data){
+  //             this.approved.push({
+  //               key: key,
+  //               fname: data[key].firstName,
+  //               lname: data[key].lastName,
+  //               company: data[key].company,
+  //               address: data[key].address,
+  //               phone: data[key].phone,
+  //               role: data[key].role,
+  //               email: data[key].email,
+  //               fcmtoken:data[key].fcmtoken
+  //             });
+  //           }
+      
+  //         });
+
+       
+  //   }
+  // }
+
+      
+
+  //   });
+
+
+
+  //   this.auth.getReceivedCards().then(data=>{
+
+  //     console.log(data);
+
+      
+  //     if( data != ' '){
+  //     for (var key in data) {
+      
+  //         // do something
+
+  //         this.auth.getOtherUserProfile(data[key].userID).then(data=>{
+         
+        
+
+  //           for(let key in data){
+  //             this.received.push({
+  //               key: key,
+  //               fname: data[key].firstName,
+  //               lname: data[key].lastName,
+  //               company: data[key].company,
+  //               address: data[key].address,
+  //               phone: data[key].phone,
+  //               role: data[key].role,
+  //               email: data[key].email,
+  //               fcmtoken:data[key].fcmtoken
+  //             });
+  //           }
+      
+  //         });
+
+       
+  //   }
+  // }
+
+      
+
+  //   });
+
+
+
+
+  
   }
 
 }

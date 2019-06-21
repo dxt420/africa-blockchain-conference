@@ -20,13 +20,15 @@
 
 <ion-content>
   <div *ngIf="data">
-    <ion-item no-lines class="list"  *ngFor="let a of data; let i = index;"  >
+      <div *ngFor="let a of data.slice().reverse(); let i = index;">
+    <ion-item *ngIf="a.type=='BCard'" (click)="openBusinessCardsPage()" no-lines class="list">
 
-      <div *ngIf="a.type=='BCard'">
-        <div (click)="openBusinessCardsPage()">
-            <ion-avatar item-start>
-              <img src="{{ a.imageurl }}">
+      
+    
+            <ion-avatar item-start >
+              <img src="{{ a.imgurl }}">
             </ion-avatar>
+            
             <h2>{{ a.title }}</h2>
 
 
@@ -34,32 +36,33 @@
             <p>{{ a.body }}</p>
 
             <p> {{ a.time }}</p>
-          </div>
-      </div>
-
-
-
-
-      <div *ngIf="a.type!='BCard'">
          
+      
+
+    </ion-item>
+
+
+    <ion-item *ngIf="a.type!='BCard'" no-lines class="list">
+
+      
+    
+        <ion-avatar item-start >
+          <img [src]="imgurl">
+        </ion-avatar>
         <h2>{{ a.title }}</h2>
 
 
-     
+    
         <p>{{ a.body }}</p>
 
         <p> {{ a.time }}</p>
-
-        </div>
-
-
      
-     
+  
 
+</ion-item>
+  </div>
 
-
-
-      </ion-item>
+    
     </div>
 
       <div *ngIf="!data">

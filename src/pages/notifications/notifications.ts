@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
+import * as myGlobals from '../../app/globals'; 
 
 /**
  * Generated class for the NotificationsPage page.
@@ -19,6 +20,9 @@ export class NotificationsPage {
   public data: any[] = []; // DECLARE A NEW EMPTY ARRAY IN THE TOP OF YOUR CLASS
 
 
+  imgurl:string = "assets/img/avatar-placeholder.png";
+
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public auth: AuthProvider) {
@@ -28,9 +32,12 @@ export class NotificationsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NotificationsPage');
+
+    // myGlobals.notificationsCount = 0;
   }
 
   ionViewDidEnter(){
+    this.data = [];
     this.auth.getNotifications().then(data=>{
 
       console.log(data);
@@ -40,7 +47,8 @@ export class NotificationsPage {
           title: data[key].title,
           body: data[key].body,
           time: data[key].time,
-          type: data[key].type
+          type: data[key].type,
+          imgurl: data[key].imgurl
         });
       }
 
