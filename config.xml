@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget android-versionCode="1" id="com.abcug19.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Africa Blockchain</name>
+    <name>ABC 2019</name>
     <description>A platform for local and international stakeholders to share their knowledge and experience with emerging technology across different sectors.</description>
     <author email="hi@matchstick.ug" href="https://www.matchstick.ug">Matchstick 256</author>
     <content src="index.html" />

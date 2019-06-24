@@ -6,6 +6,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { NetworkProvider } from '../../providers/network/network';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { ProfilerPage } from '../profiler/profiler';
 
 
 @Component({
@@ -50,6 +51,34 @@ export class HomePage implements OnInit {
     }
 
 
+    if(auth.isNewUser){
+      let alert = this.alertCtrl.create({
+        title: 'Complete Sign Up',
+        message: 'Proceed to Profile to fill in more details about you',
+        buttons: [
+          {
+            text: 'Go to Profile',
+            handler: () => {
+
+             
+              this.navCtrl.push(ProfilerPage);
+              
+            }
+          },
+          {
+            text: 'Later',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          },
+        ]
+      });
+
+      alert.present();
+    }
+
+
 
 
   }
@@ -67,7 +96,32 @@ export class HomePage implements OnInit {
                     nodes{
                       title
                       activityDetails{
+                        presentations{
+                          docTitle
+                          docFile {
+                              guid
+                              mimeType
+                            }
+                          }
                         time
+                        activitySpeakers{
+                          ... on Speaker{
+                            title
+                            featuredImage{
+                              sourceUrl
+                            }
+                            speakerDetails{
+                              company
+                              country
+                              fieldGroupName
+                              linkedin
+                              role
+                              twitter
+                              website
+                          }
+
+                        }
+                        }
 
                       }
                       days{
@@ -92,7 +146,32 @@ export class HomePage implements OnInit {
                     nodes{
                       title
                       activityDetails{
+                        presentations{
+                          docTitle
+                          docFile {
+                              guid
+                              mimeType
+                            }
+                          }
                         time
+                       activitySpeakers{
+                          ... on Speaker{
+                            title
+                            featuredImage{
+                              sourceUrl
+                            }
+                            speakerDetails{
+                              company
+                              country
+                              fieldGroupName
+                              linkedin
+                              role
+                              twitter
+                              website
+                          }
+
+                        }
+                        }
 
                       }
                       days{
@@ -117,7 +196,12 @@ export class HomePage implements OnInit {
 
 
       // console.log(data['wed'].nodes[0]['a'].nodes);
-      // console.log(data['thur'].nodes[0]['a'].nodes);
+      data['thur'].nodes[0]['a'].nodes.forEach(element => {
+        console.log(element);
+        console.log(element.activityDetails);
+        console.log(element.activityDetails.activitySpeakers);
+      });
+      
 
 
 

@@ -1,9 +1,4 @@
-<!--
-  Generated template for the AgendaDetailsPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar>
     <ion-title></ion-title>
@@ -12,12 +7,51 @@
 
 <ion-content padding>
 
-  <h1>{{xx.title}}</h1>
 
-  <h3>{{ xx.activityDetails.time }}</h3>
+  <div>
+    
+    <h2 id="title"> {{xx.title}} </h2>
+    <br>
+    <p>
+        <ion-icon name="time"></ion-icon>
+        <span style="padding-left: 10px">   {{ xx.activityDetails.time }}</span>
+     
+    </p>
+    <br>
+    <p *ngFor="let ss of  generateArray(xx.days.nodes)">
 
-  <h4>{{ xx.day.name }}</h4>
+      
+      <ion-icon name="calendar"></ion-icon>
+      <span style="padding-left: 10px">  {{ ss.name }}</span>
+    
+    </p>
 
-  <h4>{{ xx.venue.name }}</h4>
+<br>
+    <p *ngFor="let ss of  generateArray(xx.venues.nodes)">
+     
+        <ion-icon name="navigate"></ion-icon>
+      <span style="padding-left: 10px">  {{ ss.name }}</span>
+      </p>
+      <br>
 
+      <ion-item class="listItems" text-wrap no-lines>
+
+      
+        <div *ngIf="xx.activityDetails.activitySpeakers" >
+          <div class="faces">
+            <ion-avatar  *ngFor="let ss of  xx.activityDetails.activitySpeakers">
+                  <img (click)="openItem(ss,'SpeakerDetailsPage')" src="{{ ss.featuredImage.sourceUrl }}">
+            </ion-avatar>
+          </div>
+        </div>
+
+       
+
+      </ion-item>
+      
+  
+ 
+    
+  </div>
+  
 </ion-content>

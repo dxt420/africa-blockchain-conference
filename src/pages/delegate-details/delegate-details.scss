@@ -1,14 +1,22 @@
 page-delegate-details {
 
-     #profileImage ion-avatar {
-    width: 40%;
-    margin-left:30%;
-    // height: 100px;
-  }
-
   #profileImage {
     background-color: transparent;
   }
+
+
+
+  #profileImage ion-avatar{
+    background-color: transparent;
+    width: 40%;
+    margin-left: 35%;
+  }
+
+  #profileImage ion-avatar img{
+    height: 80px;
+    width: 80px;
+  }
+
 
 
   .labels{

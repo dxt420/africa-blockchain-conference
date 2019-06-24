@@ -19,6 +19,8 @@
       </ion-avatar>
      </ion-item>
 
+     
+
       <div >
           <ion-item class="labels"  no-lines>
               <ion-label > Name</ion-label>
@@ -36,11 +38,14 @@
           </ion-item>
           <p padding class="data">{{ xx.speakerDetails.company }}</p>
 
-          <ion-item class="labels"  no-lines>
+          <ion-item *ngIf="xx.speakerDetails.country"  class="labels"  no-lines>
             <ion-label > Country</ion-label>
 
         </ion-item>
         <p padding class="data">{{ xx.speakerDetails.country }}</p>
+
+
+     
 
           <br>
         </div>

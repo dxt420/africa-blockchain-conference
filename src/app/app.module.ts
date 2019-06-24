@@ -55,6 +55,10 @@ import { SocialPageModule } from '../pages/social/social.module';
 import { AuthPageModule } from '../pages/auth/auth.module';
 import { StarterPageModule } from '../pages/starter/starter.module';
 import { NotificationsProvider } from '../providers/notifications/notifications';
+import { Login2Page } from '../pages/login2/login2';
+import { Login2PageModule } from '../pages/login2/login2.module';
+import { ProfilerPageModule } from '../pages/profiler/profiler.module';
+import { ProfilerPage } from '../pages/profiler/profiler';
 // import { AuthPageModule } from '../pages/auth/auth.module';
 // import { HomePageModule } from '../pages/home/home.module';
 
@@ -105,7 +109,9 @@ firebase.initializeApp({
     AuthPageModule,
     SignupPageModule,
     StarterPageModule,
-    BusinessCardsPageModule
+    BusinessCardsPageModule,
+    Login2PageModule,
+    ProfilerPageModule
 
 
 
@@ -125,7 +131,9 @@ firebase.initializeApp({
     NotificationsPage,
     // DelegatesPage,
     SignupPage,
-    SpeakersPage
+    SpeakersPage,
+    Login2Page,
+    ProfilerPage
 
   ],
   providers: [

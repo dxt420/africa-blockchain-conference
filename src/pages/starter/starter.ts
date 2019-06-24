@@ -17,6 +17,10 @@ import { AuthPage } from '../auth/auth';
 })
 export class StarterPage {
 
+
+  imgurl:string = "assets/img/avatar-placeholder.png";
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -27,5 +31,20 @@ export class StarterPage {
   goToHome(){
     this.navCtrl.setRoot(AuthPage);
   }
+
+
+  // google() {
+  //   this.auth.googleLogin();
+
+  // }
+
+  // goToSignup() {
+  //   this.navCtrl.push(AuthPage);
+  // }
+
+  // facebook() {
+  //   this.auth.facebookLogin();
+  // }
+
 
 }

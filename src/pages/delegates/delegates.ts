@@ -21,14 +21,22 @@ export class DelegatesPage {
   
   public data: any[] = []; // DECLARE A NEW EMPTY ARRAY IN THE TOP OF YOUR CLASS
 
+
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public auth: AuthProvider) {
+
+             
                 auth.getDelegates().then(data=>{
                   this.delegates = data;
                 
 
                   for(let key in this.delegates){
+                   if (this.delegates[key].id == this.auth.user.uid) {
+                     continue;
+                   }
+                    
                     this.data.push({
                       key: key,
                       fname: this.delegates[key].firstName,

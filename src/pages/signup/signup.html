@@ -5,9 +5,11 @@
   </ion-header>
 
 <ion-content padding>
-
+  <div text-center>
+    <p>Click to upload a photo</p>
+</div>
       <ion-item id="uploadImage" no-lines>
-
+      
          <ion-avatar (click)="openImagePickerCrop()">
              <img [src]="imgurl">
 
@@ -39,7 +41,7 @@
 
         <div text-center style="color:red;" class="form-error">{{signupError}}</div>
 
-      <button ion-button round small padding [disabled]="!registerForm.valid"  type="submit">Sign Up</button>
+      <button ion-button small padding [disabled]="!registerForm.valid"  type="submit">Sign Up</button>
 
 
 

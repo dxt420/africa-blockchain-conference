@@ -1,55 +1,56 @@
+
+
+
+
+
+
 <ion-content class="no-scroll" padding>
 
 
-  <div text-center>
-    <img id="loginLogo" [src]="'assets/imgs/ll.png'" />
+    <div text-center>
+      <img class="abcIcon" [src]="'assets/imgs/abc-icon.png'" />
+    </div>
+
+    <div text-center>
+        <img class="abcTextIcon" [src]="'assets/imgs/logo-white.png'" />
+      </div>
+
+  
+
+      <div text-center>
+      <h3 class="abcTextHeader">Preparing Africa for the 4th Industrial Revolution</h3>
+        </div>
+  
+  
+  
+
+        <div id="socialDiv" text-center>
+        
+          <img class="socialBtns" (click)="facebook()" [src]="'assets/imgs/continue-w-facebook.png'" />
+          <img class="socialBtns" (click)="google()" [src]="'assets/imgs/continue-w-google.png'" />
+
+        </div>
+  
+              
+         
+              
+  
+  <div (click)="goToSignup()" id="emailLink" padding>
+      Sign In with email 
   </div>
+  
 
-  <div>
-    <h1 id="loginHeader" >Sign In</h1>
-  </div>
-
-  <form (ngSubmit)="login()" [formGroup]="loginForm">
-
-
-  <ion-label>Email </ion-label>
-  <ion-input class="loginInputs"  type="email" formControlName="email" ></ion-input>
-
-
-
-    <ion-label>Password </ion-label>
-    <ion-input  class="loginInputs" type="password" formControlName="password" ></ion-input>
-
-
-
-
-
-<br>
-  <div>
-      <div style="color:red;" class="form-error">{{loginError}}</div>
-
-      <div> <button id="signInBtn" ion-button small padding [disabled]="!loginForm.valid"  type="submit">Sign in</button></div>
-
-  </div>
-
-</form>
-
-
-<div padding>New User ? <span id="signUpLink" (click)="goToSignup()" >Sign Up </span></div>
-
-<!-- <div>Or </div> -->
-
-<br><br>
-
-  <img class="socialBtns" (click)="facebook()" [src]="'assets/imgs/fb.png'" />
-
-
-
-  <img class="socialBtns" (click)="google()" [src]="'assets/imgs/google.png'" />
-
-
-
-
-
-
-</ion-content>
+  
+   
+  
+  
+  
+   
+  
+  
+  
+  
+  
+  
+  </ion-content>
+  

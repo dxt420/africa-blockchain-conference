@@ -1,3 +1,31 @@
 page-agenda-details {
 
+    #title{
+        color:#b33224; 
+        font-weight: 600;
+      }
+
+
+      .faces>ion-avatar{
+        float: left;
+        margin-right: 7px;
+    }
+
+    .listItems{
+      background-color: transparent;
+    }
+    
+    .listItems div{
+      padding:5px;
+    }
+    
+    .listItems div p{
+      color:#b33224; 
+      font-weight: 600;
+    }
+
+    ion-icon{
+      color:#b33224;
+      font-weight: 400; 
+    }
 }

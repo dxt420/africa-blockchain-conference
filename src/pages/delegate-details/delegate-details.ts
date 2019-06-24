@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { NotificationsProvider } from '../../providers/notifications/notifications';
 import { AuthProvider } from '../../providers/auth/auth';
+import Swal from 'sweetalert2'
 
 /**
  * Generated class for the DelegateDetailsPage page.
@@ -22,7 +23,7 @@ export class DelegateDetailsPage {
   requestPending;
   requestApproved;
 
-  
+  meEmail;
 
   firstname;
   lastname;
@@ -35,7 +36,15 @@ export class DelegateDetailsPage {
               public navParams: NavParams) {
         this.xx = navParams.get('delegate');
 
+       
+
         console.log(this.xx);
+
+        
+
+
+        
+
 
         auth.getFirstName().then(data=>{
           this.firstname = data;
@@ -108,6 +117,8 @@ export class DelegateDetailsPage {
   requestCard(requestedUser){
     console.log(requestedUser);
     console.log(this.requestPending);
+
+
       if(this.requestPending == "pending"){
       let alert = this.alertCtrl.create({
                     title: "Done Here",
@@ -136,11 +147,29 @@ export class DelegateDetailsPage {
         alert.present();
       }
       else{
-        var time = new Date() + ""
+        var time = new Date().toLocaleString() + ""
         console.log(time)
         this.notifications.requestCard(this.auth.user, this.firstname + " " + this.lastname,requestedUser.id,requestedUser.fcmtoken,this.dp,time) 
-        this.ionViewDidLoad();
+        Swal.fire({
+          title: 'Request Sent',
+          text: "Your business card request has been sent successfully.",
+          type: 'success',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Done'
+        }).then((result) => {
+          if (result.value) {
+            this.ionViewDidLoad();
+    
+          }
+        })
       }
+
+
+
+     
+
   }
 
 

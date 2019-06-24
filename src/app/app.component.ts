@@ -15,8 +15,9 @@ import { Push } from '@ionic-native/push';
 import { AppUpdate } from '@ionic-native/app-update';
 import { NetworkProvider } from '../providers/network/network';
 import { NotificationsProvider } from '../providers/notifications/notifications';
-import { NotificationsPage } from '../pages/notifications/notifications';
-import * as myGlobals from './globals'; 
+
+import Swal from 'sweetalert2'
+
 
 
 @Component({
@@ -111,9 +112,6 @@ export class MyApp {
         if (user) {
 
           this.fcm.getToken().then(token => {
-            // Your best bet is to here store the token on the user's profile on the
-            // Firebase database, so that when you want to send notifications to this
-            // specific user you can do it from Cloud Functions.
 
             var ref = firebase.database().ref().child("users");
               ref.child(user.uid).update({fcmtoken:token}).then(function (ref) {//use 'child' and 'set' combination to save data in your own generated key
@@ -145,26 +143,23 @@ export class MyApp {
       
               this.nav.setRoot(TabsPage);
       
-              let alert = this.alertCtrl.create({
-                title: data.title,
-                message: data.body,
-                buttons: [
-                  {
-                    text: 'Open in Notifications',
-                    handler: () => {
-                      this.nav.push('NotificationsPage');
-                    }
-                  },
-                  {
-                    text: 'Ignore',
-                    role: 'cancel'
-                  }
-                  
+          
 
-                ]
-              });
-      
-              alert.present();
+
+              Swal.fire({
+                title: data.title,
+                text: data.body,
+                type: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Open in Notifications'
+              }).then((result) => {
+                if (result.value) {
+                  this.nav.push('NotificationsPage');
+          
+                }
+              })
       
       
       
@@ -173,18 +168,21 @@ export class MyApp {
               //Notification was received in foreground. Maybe the user needs to be notified.
               console.log(JSON.stringify(data));
       
-              let alert = this.alertCtrl.create({
+
+              Swal.fire({
                 title: data.title,
-                message: data.body,
-                buttons: [
-                  {
-                    text: 'Done',
-                    role: 'cancel'
-                  }
-                ]
-              });
-      
-              alert.present();
+                text: data.body,
+                type: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Open in Notifications'
+              }).then((result) => {
+                if (result.value) {
+                  this.nav.push('NotificationsPage');
+          
+                }
+              })
       
       
               // this.nav.push('NotificationsPage', { profileId: data.profileId });
@@ -211,31 +209,11 @@ export class MyApp {
 
           this.rootPage = TabsPage;
 
-          // this.fcm.getToken().then(token => {
-          //   var ref = firebase.database().ref().child("users");
-          //   ref.child(user.uid).update({ fcmtoken: token }).then(function (ref) {//use 'child' and 'set' combination to save data in your own generated key
-          //     console.log("Token Refreshed ");
-
-          //   }, function (error) {
-          //     console.log(error);
-          //   });
-
-
-          // });
 
 
         } else {
 
 
-
-      // this.storage.get('introShown').then((result) => {
-      //   if (!result) {
-      //     this.storage.set('introShown', true);
-      //     this.rootPage = StarterPage;
-      //   }else{
-      //     this.rootPage = AuthPage;
-      //   }
-      // });
       this.rootPage = AuthPage;
 
           console.log("There's no user here");
@@ -279,27 +257,13 @@ export class MyApp {
         { title: 'Business Cards', component: 'BusinessCardsPage', icon: "ios-apps" },
         // { title: 'Send Feedback', component: 'FeedbackPage', icon: "ios-paper-plane" },
         { title: 'Feed', component: 'SocialPage', icon: "logo-twitter" },
-        // { title: 'Notifications', component: 'NotificationsPage', icon: "custom-notification" },
+        { title: 'Profile', component: 'ProfilerPage', icon: "person" },
         // { title: 'Settings', component: 'SettingsPage', icon: "ios-options" },
 
 
 
 
       ]
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
 
 
   }
@@ -314,42 +278,34 @@ export class MyApp {
 
   public logout(){
 
-    let alert = this.alertCtrl.create({
+
+
+
+
+    Swal.fire({
       title: 'Confirm Logout',
-      message: 'Do you really want to log out?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Confirm',
-          handler: () => {
-            if(this.auth.user.providerData[0].providerId == "google.com"){
-              this.auth.logoutGoogle();
+      text: "Do you really want to log out?",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Logout'
+    }).then((result) => {
+      if (result.value) {
+        if(this.auth.user.providerData[0].providerId == "google.com"){
+          this.auth.logoutGoogle();
 
-            }else if(this.auth.user.providerData[0].providerId == "facebook.com"){
-              this.auth.logoutFacebook();
+        }else if(this.auth.user.providerData[0].providerId == "facebook.com"){
+          this.auth.logoutFacebook();
 
-            }else{
-              firebase.auth().signOut();
+        }else{
+          firebase.auth().signOut();
 
-            }
-
-
-
-          }
         }
-      ]
-    });
 
+      }
+    })
 
-
-
-    alert.present();
 
   }
 

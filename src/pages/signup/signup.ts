@@ -70,7 +70,7 @@ export class SignupPage {
 		};
 		this.auth.signUp(credentials).then(() => {
       this.loading.dismissAll();
-
+      this.auth.isNewUser = true;
 
     },error => {
       this.signupError = error.message

@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import * as myGlobals from '../../app/globals'; 
+
+import Swal from 'sweetalert2'
+
+
 
 /**
  * Generated class for the NotificationsPage page.
@@ -60,5 +63,23 @@ export class NotificationsPage {
     this.navCtrl.push("BusinessCardsPage");
 
   }
+
+  popModal(a){
+    Swal.fire({
+      title: '<strong>'+a.title+'</strong>',
+      type: 'info',
+      html: a.body ,
+      focusConfirm: false,
+      confirmButtonText:
+        '<i class="fa fa-thumbs-up"></i> Done!',
+      confirmButtonAriaLabel: 'Thumbs up, great!',
+
+    })
+  }
+
+//   convertTime(){
+//     var isToday = require('date-fns/is_today')
+// isToday(new Date())
+//   }
 
 }

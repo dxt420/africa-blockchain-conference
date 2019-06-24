@@ -8,7 +8,6 @@ import { HomePage } from '../home/home';
 import { SocialPage } from '../social/social';
 import { SpeakersPage } from '../speakers/speakers';
 import { FCM } from '@ionic-native/fcm';
-import { NotificationsProvider } from '../../providers/notifications/notifications';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertController, NavController } from 'ionic-angular';
 // import * as myGlobals from '../../app/globals'; 

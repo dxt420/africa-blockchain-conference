@@ -8,7 +8,7 @@
       <ion-icon id="menuToggleIcon"  name="menu"></ion-icon>
     </button>
 
-    <ion-title>ABC Agenda</ion-title>
+    <ion-title>Programme</ion-title>
 
   </ion-navbar>
 
@@ -48,6 +48,15 @@
             
                 
               </div>
+              <div *ngIf="a.activityDetails.activitySpeakers" >
+                <div class="faces">
+                  <ion-avatar  *ngFor="let ss of  a.activityDetails.activitySpeakers">
+                        <img  src="{{ ss.featuredImage.sourceUrl }}">
+                  </ion-avatar>
+                </div>
+              </div>
+
+             
 
             </ion-item>
 
@@ -82,6 +91,16 @@
                 <p >{{ a.activityDetails.time }}</p>
                 <h2> {{ cleanHTML(a.title) }} </h2>
               </div>
+
+              <div *ngIf="a.activityDetails.activitySpeakers" >
+                <div style="padding-left:10%;" class="faces">
+                  <ion-avatar  *ngFor="let ss of  a.activityDetails.activitySpeakers">
+                        <img  src="{{ ss.featuredImage.sourceUrl }}">
+                  </ion-avatar>
+                </div>
+              </div>
+
+    
 
             </ion-item>
 

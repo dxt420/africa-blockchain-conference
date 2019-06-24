@@ -19,7 +19,7 @@
 
 
 <ion-content>
-  <div *ngIf="data">
+  <div *ngIf="data.length">
       <div *ngFor="let a of data.slice().reverse(); let i = index;">
     <ion-item *ngIf="a.type=='BCard'" (click)="openBusinessCardsPage()" no-lines class="list">
 
@@ -42,7 +42,7 @@
     </ion-item>
 
 
-    <ion-item *ngIf="a.type!='BCard'" no-lines class="list">
+    <ion-item *ngIf="a.type!='BCard'" (click)="popModal(a)" no-lines class="list">
 
       
     
@@ -65,7 +65,7 @@
     
     </div>
 
-      <div *ngIf="!data">
+      <div *ngIf="!data.length">
 
         <p text-center>No Notifications yet</p>
 

@@ -5,6 +5,7 @@ import { Facebook } from '@ionic-native/facebook';
 import firebase from 'firebase';
 import { LoadingController, AlertController } from 'ionic-angular';
 import { FCM } from '@ionic-native/fcm';
+import Swal from 'sweetalert2'
 // import { AuthPage } from '../../pages/auth/auth';
 
 
@@ -24,6 +25,7 @@ export class AuthProvider {
   public loading: any;
 
   ttoken: any;
+  isNewUser: boolean;
 
   constructor(public http: HttpClient,
     private googlePlus: GooglePlus,
@@ -44,6 +46,8 @@ export class AuthProvider {
 
         });
         console.log(user);
+
+        console.log(this.isNewUser);
 
         this.user = user;
         console.log("******************************");
@@ -95,23 +99,26 @@ export class AuthProvider {
           console.log("Saved");
           // let user = firebase.auth().currentUser;
           // user.sendEmailVerification();
-            let alert = this.alertCtrl.create({
-        title: 'Success',
-        message: 'New Account with Africa Blockchain created successfully',
-        buttons: [
-          {
-            text: 'Done',
-            handler: () => {
+         
+          // this. = true;
+  
 
+      Swal.fire({
+        title: 'Welcome to ABC 2019',
+        text: "New Account with Africa Blockchain created successfully",
+        type: 'success',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Done'
+      }).then((result) => {
+        if (result.value) {
+       
+  
+        }
+      })
 
-              // this.navCtrl.setRoot(AuthPage);
-              
-            }
-          }
-        ]
-      });
-
-      alert.present();
+   
 
           //  $location.path('/profile');
         }, function (error) {
@@ -132,6 +139,9 @@ export class AuthProvider {
         }
         console.log(error);
       });
+
+
+     
   }
 
   googleLogin(): void {
@@ -161,12 +171,14 @@ export class AuthProvider {
             ref.child(success.user.uid).set(data).then(function (ref) {//use 'child' and 'set' combination to save data in your own generated key
               console.log("Saved");
 
+              
+
             }, function (error) {
               console.log(error);
             });
 
-
-          }
+            this.isNewUser = true;
+          } 
 
 
 
@@ -211,24 +223,26 @@ export class AuthProvider {
               console.log(error);
             });
 
-
+            this.isNewUser = true;
           }
 
-
+          this.loading.dismissAll();
 
         })
         .catch((error) => {
 
           console.log("Firebase failure: " + error);
+          this.loading.dismissAll();
         });
 
     }).catch((error) => {
 
-      console.log(error)
+      console.log(error);
+      this.loading.dismissAll();
     });
 
 
-    this.loading.dismissAll();
+   
   }
 
   getDelegates() {
@@ -279,6 +293,16 @@ export class AuthProvider {
 
   }
 
+  getReceivedCardsTwo() {
+    return firebase.database().ref().child("businessCards").child(this.user.uid).child("received").once('value').then(function (snapshot) {
+      // return (snapshot.val().received);
+
+      return (snapshot.val()) || ' ';
+
+    });;
+
+  }
+
   getApprovedCards() {
     return firebase.database().ref().child("businessCards").child(this.user.uid).once('value').then(function (snapshot) {
       // return (snapshot.val().approved);
@@ -289,9 +313,29 @@ export class AuthProvider {
 
   }
 
+  getApprovedCardsTwo() {
+    return firebase.database().ref().child("businessCards").child(this.user.uid).child("approved").once('value').then(function (snapshot) {
+      // return (snapshot.val().approved);
+
+      return (snapshot.val()) || ' ';
+
+    });;
+
+  }
+
   getUserProfile() {
     return firebase.database().ref().child("users").child(this.user.uid).once('value').then(function (snapshot) {
       return (snapshot.val());
+
+      
+
+    });;
+
+  }
+
+  getEmail() {
+    return firebase.database().ref().child("users").child(this.user.uid).once('value').then(function (snapshot) {
+      return (snapshot.val().email);
 
       
 

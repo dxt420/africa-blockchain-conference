@@ -3,6 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { NotificationsProvider } from '../../providers/notifications/notifications';
 
+
+import Swal from 'sweetalert2'
+
+
 /**
  * Generated class for the BusinessCardsPage page.
  *
@@ -33,7 +37,6 @@ export class BusinessCardsPage {
   constructor(public navCtrl: NavController, 
               public auth: AuthProvider,
               public notifications: NotificationsProvider,
-              
               public navParams: NavParams) {
 
                 auth.getFirstName().then(data=>{
@@ -61,9 +64,24 @@ export class BusinessCardsPage {
             
                       this.auth.getOtherUserProfile(data[key].userID).then(data=>{
                         console.log(data)
-                        this.pending.push(data);
+                    
+
+                        this.pending.push({
                        
+                          fname: data.firstName,
+                          lname: data.lastName,
+                          company: data.company,
+                          address: data.address,
+                          phone: data.phone,
+                          role: data.role,
+                      
+                          imageurl: data.imageurl,
+                          fcmtoken:data.fcmtoken
+                        });
+             
                       });
+
+                      console.log(this.pending)
             
                    
                 }
@@ -72,7 +90,90 @@ export class BusinessCardsPage {
                   
             
                 });
-  
+
+
+                  this.auth.getApprovedCardsTwo().then(data=>{
+
+      console.log(data);
+
+      
+      if( data != ' '){
+      for (var key in data) {
+      
+          // do something
+
+          this.auth.getOtherUserProfile(data[key].userID).then(data=>{
+            console.log(data)
+        
+
+
+            this.approved.push({
+                       
+              fname: data.firstName,
+              lname: data.lastName,
+              company: data.company,
+              address: data.address,
+              phone: data.phone,
+              role: data.role,
+          
+              imageurl: data.imageurl,
+              fcmtoken:data.fcmtoken
+            });
+ 
+      
+          });
+
+       
+    }
+  }
+
+      
+
+                  });
+
+
+
+                this.auth.getReceivedCards().then(data=>{
+
+                  console.log(data);
+
+                  
+                  if( data != ' '){
+                  for (var key in data) {
+                  
+                      // do something
+
+                      this.auth.getOtherUserProfile(data[key].userID).then(data=>{
+                    
+                    
+
+                        console.log(data)
+                 
+
+
+            this.received.push({
+                       
+              fname: data.firstName,
+              lname: data.lastName,
+              company: data.company,
+              address: data.address,
+              phone: data.phone,
+              role: data.role,
+          
+              imageurl: data.imageurl,
+              fcmtoken:data.fcmtoken
+            });
+                  
+                      });
+
+                  
+                }
+              }
+
+                  
+
+                });
+              
    
 
   }
@@ -87,94 +188,29 @@ export class BusinessCardsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BusinessCardsPage');
-
- 
-
-
-
-
-  //   this.auth.getApprovedCards().then(data=>{
-
-  //     console.log(data);
-
-      
-  //     if( data != ' '){
-  //     for (var key in data) {
-      
-  //         // do something
-
-  //         this.auth.getOtherUserProfile(data[key].userID).then(data=>{
-         
-        
-
-  //           for(let key in data){
-  //             this.approved.push({
-  //               key: key,
-  //               fname: data[key].firstName,
-  //               lname: data[key].lastName,
-  //               company: data[key].company,
-  //               address: data[key].address,
-  //               phone: data[key].phone,
-  //               role: data[key].role,
-  //               email: data[key].email,
-  //               fcmtoken:data[key].fcmtoken
-  //             });
-  //           }
-      
-  //         });
-
-       
-  //   }
-  // }
-
-      
-
-  //   });
-
-
-
-  //   this.auth.getReceivedCards().then(data=>{
-
-  //     console.log(data);
-
-      
-  //     if( data != ' '){
-  //     for (var key in data) {
-      
-  //         // do something
-
-  //         this.auth.getOtherUserProfile(data[key].userID).then(data=>{
-         
-        
-
-  //           for(let key in data){
-  //             this.received.push({
-  //               key: key,
-  //               fname: data[key].firstName,
-  //               lname: data[key].lastName,
-  //               company: data[key].company,
-  //               address: data[key].address,
-  //               phone: data[key].phone,
-  //               role: data[key].role,
-  //               email: data[key].email,
-  //               fcmtoken:data[key].fcmtoken
-  //             });
-  //           }
-      
-  //         });
-
-       
-  //   }
-  // }
-
-      
-
-  //   });
-
-
-
-
   
   }
 
+  openItem(item: any,page: string) {
+    this.navCtrl.push(page.toString(), {
+      delegate: item
+    });
+
+
+  }
+
+
+  popModal(a){
+  
+
+
+    Swal.fire(
+       a.fname + ' ' + a.lastName,
+       a.company +', ' + a.role + '.' + a.address,
+       a.phone
+      
+      
+      
+    )
+  }
 }

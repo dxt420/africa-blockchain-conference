@@ -20,15 +20,15 @@
 
   
 
-<ion-content padding>
+<ion-content>
 
 
   <div [ngSwitch]="abc">
 
       <div *ngSwitchCase="'a'">
 
-          <div *ngIf="approved">
-            <ion-item no-lines class="list"  *ngFor="let a of approved; let i = index;"  >
+          <div *ngIf="approved.length">
+            <ion-item no-lines class="list" (click)="popModal(a)"  *ngFor="let a of approved; let i = index;"  >
               <ion-avatar item-start>
                 <img src="{{ a.imageurl }}">
               </ion-avatar>
@@ -55,7 +55,7 @@
         
             </div>
         
-            <div *ngIf="!approved">
+            <div *ngIf="!approved.length">
             <p text-center>You haven't approved any business card request yet</p>
           </div>
     
@@ -63,8 +63,8 @@
         </div>
     <div *ngSwitchCase="'b'">
 
-      <div *ngIf="received">
-        <ion-item no-lines class="list"  *ngFor="let a of received; let i = index;"  >
+      <div *ngIf="received.length">
+        <ion-item no-lines class="list" (click)="openItem(a,'DelegateDetailsPage')"  *ngFor="let a of received; let i = index;"  >
           <ion-avatar item-start>
             <img src="{{ a.imageurl }}">
           </ion-avatar>
@@ -94,7 +94,7 @@
     
         </div>
     
-        <div *ngIf="!received">
+        <div *ngIf="!received.length">
         <p text-center>You haven't received business cards yet</p>
       </div>
 
@@ -104,35 +104,32 @@
 
     <div *ngSwitchCase="'c'">
 
-      <div *ngIf="pending">
-        <ion-item no-lines class="list"  *ngFor="let a of pending; let i = index;"  >
+      <div *ngIf="pending.length">
+        <ion-item no-lines class="list" (click)="openItem(a,'DelegateDetailsPage')"  *ngFor="let a of pending; let i = index;"  >
           <ion-avatar item-start>
             <img src="{{ a.imageurl }}">
           </ion-avatar>
     
           <h2>{{ a.fname }} {{ a.lname }}</h2>
-    
+   
+      
     
           <div *ngIf="a.company">
           <p>{{ a.role }}</p>
           <p>{{ a.company }}</p>
           </div>
     
-          <p padding class="data">
-            <ion-chip >
-            
-              <ion-label>Pending</ion-label>
-            </ion-chip>
-    
-        
-          </p>
+     
     
         </ion-item>
+
+
+        
     
     
         </div>
     
-        <div *ngIf="!pending">
+        <div *ngIf="!pending.length">
         <p text-center>You have not requested any business cards yet</p>
       </div>
 

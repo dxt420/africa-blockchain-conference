@@ -26,7 +26,7 @@ export class NotificationsProvider {
   saveNotificationToFirebase(id,notification) {
     var ref = firebase.database().ref().child("notifications").child(id);
 
-    var time = new Date()
+    var time = new Date().toLocaleString()
     
     console.log(time)
     
@@ -86,7 +86,7 @@ export class NotificationsProvider {
     }).subscribe((data) => {
       console.log('notification data -> ', data);
       var ref = firebase.database().ref().child("businessCards").child(user.uid).child("pending");
-      var ref2 = firebase.database().ref().child("businessCards").child(user.uid).child("received");
+      var ref2 = firebase.database().ref().child("businessCards").child(requestedUserID).child("received");
       var a = {
   
         userID: requestedUserID
@@ -105,7 +105,7 @@ export class NotificationsProvider {
         console.log(error);
       });
 
-      var time = new Date()
+    
 
       // this.saveNotificationToFirebase(requestedUserID,notifcationObj.data,time);
 
@@ -139,7 +139,7 @@ export class NotificationsProvider {
         "title": "Business Card Request",
         "body" : approveUserName + " has approved your business card request",
         "type" : "BCard",
-        "time": new Date()
+        "time": new Date().toLocaleString()
       },
       "to": requestedUserToken,
       "priority": "high",
@@ -154,9 +154,9 @@ export class NotificationsProvider {
       headers: options.set('Authorization', 'key=AAAANS17ch8:APA91bH8oPT-7qE-jLkxGEIv_hg2gxIwcPi3Rex54VgvE3aL_av4u4z3UFurx0Jtej1FcAXCVgXM2n9HMQiDAf5k2nbU9NXq2UHrfhVohTAFRl6iBq6j5PKz1eutdL_FhzqEnPdicQ67'),
     }).subscribe((data) => {
       console.log('notification data -> ', data);
-      firebase.database().ref().child("businessCards").child(user.uid).child("pending").child(requestedUserID).remove();
+      firebase.database().ref().child("businessCards").child(requestedUserID).child("pending").child(requestedUserID).remove();
       
-      var ref = firebase.database().ref().child("businessCards").child(user.uid).child("approved");
+      var ref = firebase.database().ref().child("businessCards").child(requestedUserID).child("approved");
       var a = {
   
         userID: requestedUserID
@@ -168,7 +168,6 @@ export class NotificationsProvider {
         console.log(error);
       });
 
-      var time = new Date()
       // this.saveNotificationToFirebase(requestedUserID,notifcationObj.data,time);
 
     }, (error) => {

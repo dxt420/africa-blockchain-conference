@@ -1,4 +1,11 @@
 page-auth {
+
+  ion-content{
+    background-image: url('../assets/imgs/first.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+  }
   ion-col {
 
     &:first-of-type {
@@ -9,17 +16,41 @@ page-auth {
 
   }
 
-  #loginLogo{
-    height:18vh;
+  .abcIcon{
+    width: 80px;
   }
+  .abcTextIcon{
+    width: 50%;
+    margin-bottom: 20px;
+  }
+.abcTextHeader{
+  color: white;
+  font-weight: 300;
+  width: 70%;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 30px;
+}
 
-  #loginHeader{
-    font-size: 24px;font-weight: 600;
-  }
-  .loginInputs{
-    margin-top: -15px;
-    border-bottom: 1px solid;
-  }
+#socialDiv{
+  position: absolute;
+  bottom: 30%;
+}
+
+
+#emailLink{
+  position: absolute;
+  bottom: 18%;
+  margin: auto;
+  display: block;
+  color: white;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+  text-decoration: underline;
+}
+
+
 
   #signInBtn{
     background-color: #b33224;
@@ -31,8 +62,11 @@ page-auth {
     text-decoration: underline;
   }
 
-  .socialBtns{
-    height:9vh;
+
+  img.socialBtns{
+    max-width:70%;
+
+    margin-bottom: 5px;
   }
 
   .faces>button{
