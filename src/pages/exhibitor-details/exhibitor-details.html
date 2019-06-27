@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar text-center>
-    <ion-title>Sponsor </ion-title>
+    <ion-title>Exhibitor </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -13,10 +13,13 @@
 
 
     <ion-item id="profileImage" no-lines>
+
+      
       <div text-center>
       
-         <img src="{{ xx.featuredImage.sourceUrl }}">
-        </div>
+        <img src="{{ xx.featuredImage.sourceUrl }}">
+       </div>
+  
     </ion-item>
 
     <div text-center>
@@ -25,13 +28,18 @@
 
     </div>
 
+
+
+
     <div id="aboutInfoDiv" class="transparent" >
 
-      <div [innerHTML]="theHtmlString"></div>
-  
-      <br>
+        <div [innerHTML]="theHtmlString"></div>
+    
+        <br>
 
 
-  </div>
+    </div>
+
+
 
 </ion-content>

@@ -27,6 +27,9 @@ export class ProfilerPage {
   role;
   address;
   phone;
+  phone2;
+  email;
+  email2;
 
   // imgurl:string = "assets/img/avatar-placeholder.png";
   imgurl;
@@ -57,6 +60,14 @@ export class ProfilerPage {
       this.lastname = data;
     });
 
+    auth.getEmail().then(data=>{
+      this.email = data;
+    });
+
+    auth.getEmail2().then(data=>{
+      this.email2 = data;
+    });
+
     auth.getCompany().then(data=>{
       this.company = data;
     });
@@ -73,9 +84,13 @@ export class ProfilerPage {
       this.phone = data;
     });
 
+    auth.getPhone2().then(data=>{
+      this.phone2 = data;
+    });
 
 
-    console.log(this.firstname);
+
+ 
 
 
 
@@ -86,7 +101,9 @@ export class ProfilerPage {
       company: [],
       role: [],
       address: [],
-      phone: []
+      phone: [],
+      phone2: [],
+      email2: []
 		});
   }
 
@@ -103,6 +120,8 @@ export class ProfilerPage {
       role: data.role,
       address: data.address,
       phone: data.phone,
+      phone2: data.phone2,
+      email2: data.email2,
       imageurl: this.imgurl
 
     };

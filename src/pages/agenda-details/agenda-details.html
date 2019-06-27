@@ -1,7 +1,7 @@
 
 <ion-header>
   <ion-navbar>
-    <ion-title></ion-title>
+    <ion-title>Programme Info</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -12,13 +12,17 @@
     
     <h2 id="title"> {{xx.title}} </h2>
     <br>
-    <p>
+    <ion-label>Time </ion-label>
+    <p class="cool">
         <ion-icon name="time"></ion-icon>
-        <span style="padding-left: 10px">   {{ xx.activityDetails.time }}</span>
+        <span style="padding-left: 10px">  
+          
+       
+          {{ cleanHTML(xx.activityDetails.time) }}
+        </span>
      
     </p>
-    <br>
-    <p *ngFor="let ss of  generateArray(xx.days.nodes)">
+    <p class="cool" *ngFor="let ss of  generateArray(xx.days.nodes)">
 
       
       <ion-icon name="calendar"></ion-icon>
@@ -26,26 +30,30 @@
     
     </p>
 
-<br>
-    <p *ngFor="let ss of  generateArray(xx.venues.nodes)">
+ 
+
+
+
+
+    <p class="cool" *ngFor="let ss of  generateArray(xx.venues.nodes)">
      
         <ion-icon name="navigate"></ion-icon>
       <span style="padding-left: 10px">  {{ ss.name }}</span>
       </p>
       <br>
 
-      <ion-item class="listItems" text-wrap no-lines>
 
-      
-        <div *ngIf="xx.activityDetails.activitySpeakers" >
-          <div class="faces">
-            <ion-avatar  *ngFor="let ss of  xx.activityDetails.activitySpeakers">
-                  <img (click)="openItem(ss,'SpeakerDetailsPage')" src="{{ ss.featuredImage.sourceUrl }}">
-            </ion-avatar>
-          </div>
-        </div>
 
-       
+      <ion-label *ngIf="xx.activityDetails.activitySpeakers">Speakers </ion-label>
+      <ion-item no-lines class="list" (click)="openItem(post,'SpeakerDetailsPage')" *ngFor="let post of xx.activityDetails.activitySpeakers; let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'"  >
+        <ion-avatar item-start>
+          <img src="{{ post.featuredImage.sourceUrl }}">
+        </ion-avatar>
+        <h2 id="speakerTitle">{{ post.title }}</h2>
+
+
+
+      <p>{{ post.speakerDetails.role }}, {{ post.speakerDetails.company }}</p>
 
       </ion-item>
       

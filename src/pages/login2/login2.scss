@@ -8,5 +8,24 @@ page-login2 {
       .loginInputs{
         margin-top: -15px;
         border-bottom: 1px solid;
+        color: #b33224; 
+        font-weight: 600;
+        font-size: 16px;
       }
+
+      .newUser{
+        margin-top: 32px;
+        font-size: 18px;
+      }
+      #loginLogo{
+        max-width: 80%;
+        margin-bottom: 20px;
+        
+      }
+      ion-label{
+        font-size: 16px;
+        color: #b33224;
+        font-weight: 500;
+      }
+    
 }

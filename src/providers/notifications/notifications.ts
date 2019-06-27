@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { FCM } from '@ionic-native/fcm';
 import firebase from 'firebase';
@@ -27,6 +26,7 @@ export class NotificationsProvider {
     var ref = firebase.database().ref().child("notifications").child(id);
 
     var time = new Date().toLocaleString()
+    // var time = new Date()
     
     console.log(time)
     
@@ -37,6 +37,7 @@ export class NotificationsProvider {
       body:  notification.body,
       type: notification.type,
       imgurl: notification.imgurl,
+      id: notification.uid,
       time: time+""
     }
 
@@ -58,19 +59,20 @@ export class NotificationsProvider {
 
     let notifcationObj: any = {
       "notification": {
-        "title": "Business Card Request",
-        "body" : requestedUserName + " has sent you a business card request",
+        "title": "Exhange info with " + requestedUserName,
+        "body" :  "Would you like to exchange contact information with " + requestedUserName,
         "sound": "default",
         "click_action": "FCM_PLUGIN_ACTIVITY",
         "icon": "fcm_push_icon",
         
       },
       "data": {
-        "title": "Business Card Request",
-        "body" : requestedUserName + " has sent you a business card request",
+        "title": "Exhange info with " + requestedUserName,
+        "body" :  "Would you like to exchange contact information with " + requestedUserName,
         "imgurl":imgurl+"",
         "type" : "BCard",
-        "time": time
+        "time": time,
+        "uid": user.uid
       },
       "to": requestedUserToken,
       "priority": "high",
@@ -85,25 +87,37 @@ export class NotificationsProvider {
       headers: options.set('Authorization', 'key=AAAANS17ch8:APA91bH8oPT-7qE-jLkxGEIv_hg2gxIwcPi3Rex54VgvE3aL_av4u4z3UFurx0Jtej1FcAXCVgXM2n9HMQiDAf5k2nbU9NXq2UHrfhVohTAFRl6iBq6j5PKz1eutdL_FhzqEnPdicQ67'),
     }).subscribe((data) => {
       console.log('notification data -> ', data);
-      var ref = firebase.database().ref().child("businessCards").child(user.uid).child("pending");
-      var ref2 = firebase.database().ref().child("businessCards").child(requestedUserID).child("received");
+      // var ref = firebase.database().ref().child("businessCards").child(user.uid).child("pending");
+      var ref = firebase.database().ref().child("businessCards").child(user.uid);
+      var ref2 = firebase.database().ref().child("businessCards").child(requestedUserID);
+
       var a = {
   
-        userID: requestedUserID
+        userID: requestedUserID,
+        exchanged: "false"
       }
-      ref.push(a).then(function (ref) {
+
+      var b = {
+  
+        userID: user.uid,
+        exchanged: "false"
+      }
+ 
+      ref.child(requestedUserID).set(a).then(function (ref) {
         console.log("Request of Business Card Successful");
       
       }, function (error) {
         console.log(error);
       });
 
-      ref2.push(a).then(function (ref) {
+      ref2.child(user.uid).set(b).then(function (ref) {
         console.log("Request of Business Card Successful");
       
       }, function (error) {
         console.log(error);
       });
+
+    
 
     
 
@@ -123,23 +137,25 @@ export class NotificationsProvider {
 
 
 
-  approveCard(user,approveUserName,requestedUserID,requestedUserToken) {
+  approveCard(user,approveUserName,requestedUserID,requestedUserToken,imgurl,time) {
 
     
 
     let notifcationObj: any = {
       "notification": {
         "title": "Business Card Request Approved",
-        "body" : approveUserName + " has approved your business card request",
+        "body" : approveUserName + " has approved your business card exchange request",
         "sound": "default",
         "click_action": "FCM_PLUGIN_ACTIVITY",
         "icon": "fcm_push_icon"
       },
       "data": {
         "title": "Business Card Request",
-        "body" : approveUserName + " has approved your business card request",
-        "type" : "BCard",
-        "time": new Date().toLocaleString()
+        "body" : approveUserName + " has approved your business card exchange request",
+        "imgurl":imgurl+"",
+        "type" : "BCardApproved",
+        "time": time,
+        "uid": user.uid
       },
       "to": requestedUserToken,
       "priority": "high",
@@ -154,14 +170,28 @@ export class NotificationsProvider {
       headers: options.set('Authorization', 'key=AAAANS17ch8:APA91bH8oPT-7qE-jLkxGEIv_hg2gxIwcPi3Rex54VgvE3aL_av4u4z3UFurx0Jtej1FcAXCVgXM2n9HMQiDAf5k2nbU9NXq2UHrfhVohTAFRl6iBq6j5PKz1eutdL_FhzqEnPdicQ67'),
     }).subscribe((data) => {
       console.log('notification data -> ', data);
-      firebase.database().ref().child("businessCards").child(requestedUserID).child("pending").child(requestedUserID).remove();
+ 
       
-      var ref = firebase.database().ref().child("businessCards").child(requestedUserID).child("approved");
+      var ref = firebase.database().ref().child("businessCards").child(user.uid).child(requestedUserID);
       var a = {
   
-        userID: requestedUserID
+        exchanged: "true"
       }
-      ref.push(a).then(function (ref) {
+      ref.update(a).then(function (ref) {
+        console.log("Approved Request of Business Card Successful");
+      
+      }, function (error) {
+        console.log(error);
+      });
+
+
+       
+      var ref2 = firebase.database().ref().child("businessCards").child(requestedUserID).child(user.uid);
+      var b = {
+  
+        exchanged: "true"
+      }
+      ref2.update(b).then(function (ref) {
         console.log("Approved Request of Business Card Successful");
       
       }, function (error) {
@@ -180,7 +210,7 @@ export class NotificationsProvider {
 
 
   declineCard(user,requestedUserID) {
-    firebase.database().ref().child("businessCards").child(user.uid).child("pending").child(requestedUserID).remove();
+    firebase.database().ref().child("businessCards").child(requestedUserID).child(user.uid).remove();
 
   }
 

@@ -2,7 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 
+
+
+
 import Swal from 'sweetalert2'
+import { NotificationsProvider } from '../../providers/notifications/notifications';
 
 
 
@@ -16,7 +20,7 @@ import Swal from 'sweetalert2'
 @IonicPage()
 @Component({
   selector: 'page-notifications',
-  templateUrl: 'notifications.html',
+  templateUrl: 'notifications.html'
 })
 export class NotificationsPage {
 
@@ -24,11 +28,31 @@ export class NotificationsPage {
 
 
   imgurl:string = "assets/img/avatar-placeholder.png";
+  firstname;
+  lastname;
+
+dp;
 
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
+              public notifications: NotificationsProvider,
               public auth: AuthProvider) {
+
+
+                auth.getFirstName().then(data=>{
+                  this.firstname = data;
+                });
+            
+              
+            
+                auth.getLastName().then(data=>{
+                  this.lastname = data;
+                });
+
+                auth.dp().then(data=>{
+                  this.dp = data;
+                });
                
 
   }
@@ -51,7 +75,8 @@ export class NotificationsPage {
           body: data[key].body,
           time: data[key].time,
           type: data[key].type,
-          imgurl: data[key].imgurl
+          imgurl: data[key].imgurl,
+          id: data[key].id
         });
       }
 
@@ -77,9 +102,81 @@ export class NotificationsPage {
     })
   }
 
-//   convertTime(){
-//     var isToday = require('date-fns/is_today')
-// isToday(new Date())
-//   }
+
+  popModal2(a){
+    this.auth.getOtherUserProfile(a.id).then(data=>{
+      console.log(data);
+    this.auth.getCardsTwo(data.id).then(data=>{
+
+      console.log(data);
+
+      
+      if( data != ' '){
+      for (var key in data) {
+        console.log(data.userID);
+        if(a.id == data.userID ) {
+
+      
+
+          if(data.exchanged=="true"){
+            Swal.fire({
+              title: "Done Here",
+              text: "You already have this card. Please check under your business cards to view" ,
+              type: 'info',
+              showCancelButton: false,
+              confirmButtonColor: '#3085d6',
+    
+              confirmButtonText: 'Okay',
+       
+            }).then((result) => {
+              if (result.value) {
+             
+              
+              }
+            })
+          }else{
+            Swal.fire({
+              title: a.title,
+              text: a.body ,
+              type: 'info',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Accept',
+              cancelButtonText: 'Ignore'
+            }).then((result) => {
+              if (result.value) {
+             
+                this.auth.getOtherUserProfile(a.id).then(data=>{
+                  console.log(data)
+              
+        
+                  this.approve(data);
+        
+                });
+              }
+            })
+          }
+
+
+        }
+        
+      }
+      }
+    });
+
+   
+  });
+  }
+
+
+  approve(a){
+    console.log(a.id)
+    var time = new Date().toLocaleString() + ""
+    // var time = new Date()
+    this.notifications.approveCard(this.auth.user, this.firstname + " " + this.lastname,a.id,a.fcmtoken,this.dp,time)  
+  }
+
+
 
 }

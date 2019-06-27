@@ -25,11 +25,25 @@ page-sponsor-details {
   }
 
   .dataTitle{
-    width:75%;font-size: 110%;margin-bottom: -20px;margin-top: -20px;
-
-  }
+ 
+    font-size: 110%;
+    margin-bottom: -20px;
+    margin-top: -20px;
+    font-weight: 500;
+    color: #b33224;
+  
+    }
 
 ion-title{
   margin-right: 20%;
+}
+
+.faces>ion-avatar{
+  float: left;
+  margin-right: 7px;
+}
+
+ion-content{
+  background-color: #efefef !important;
 }
 }

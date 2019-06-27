@@ -24,7 +24,7 @@ export class TabsPage {
   tab4Root = NotificationsPage;
 
 
-  // n: number = myGlobals.notificationsCount;
+  n: number = 0;
 
   constructor(public fcm: FCM,
     
@@ -33,16 +33,7 @@ export class TabsPage {
     public navCtrl: NavController,) {
 
 
-      
 
-
-        // this.fcm.onNotification().subscribe( data => {
-
-
-        //   console.log("In notification");
-        //   this.n++;
-       
-        // });
        
       }
   

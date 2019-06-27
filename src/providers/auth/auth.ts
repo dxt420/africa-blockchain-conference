@@ -12,15 +12,6 @@ import Swal from 'sweetalert2'
 @Injectable()
 export class AuthProvider {
 
-
-  //  additional fiekds
-
-  // birthday
-  // sex
-  // phone
-  // country
-
-  // public userProfile:any = null;
   public user: firebase.User;
   public loading: any;
 
@@ -273,8 +264,18 @@ export class AuthProvider {
   }
 
 
-  getPendingCardsTwo() {
-    return firebase.database().ref().child("businessCards").child(this.user.uid).child("pending").once('value').then(function (snapshot) {
+  getCards() {
+    return firebase.database().ref().child("businessCards").child(this.user.uid).once('value').then(function (snapshot) {
+   
+
+      return (snapshot.val()) || ' ';
+
+    });;
+
+  }
+
+  getCardsTwo(id) {
+    return firebase.database().ref().child("businessCards").child(this.user.uid).child(id).once('value').then(function (snapshot) {
    
 
       return (snapshot.val()) || ' ';
@@ -326,9 +327,6 @@ export class AuthProvider {
   getUserProfile() {
     return firebase.database().ref().child("users").child(this.user.uid).once('value').then(function (snapshot) {
       return (snapshot.val());
-
-      
-
     });;
 
   }
@@ -337,7 +335,13 @@ export class AuthProvider {
     return firebase.database().ref().child("users").child(this.user.uid).once('value').then(function (snapshot) {
       return (snapshot.val().email);
 
-      
+    });;
+
+  }
+
+  getEmail2() {
+    return firebase.database().ref().child("users").child(this.user.uid).once('value').then(function (snapshot) {
+      return (snapshot.val().email2);
 
     });;
 
@@ -401,6 +405,14 @@ export class AuthProvider {
 
   }
 
+  getPhone2() {
+    return firebase.database().ref().child("users").child(this.user.uid).once('value').then(function (snapshot) {
+      return (snapshot.val() && snapshot.val().phone2) || ' ';
+
+    });;
+
+  }
+
   dp() {
     return firebase.database().ref().child("users").child(this.user.uid).once('value').then(function (snapshot) {
       return (snapshot.val() && snapshot.val().imageurl) || ' ';
@@ -441,8 +453,25 @@ export class AuthProvider {
       role: credentials.role,
       address: credentials.address,
       phone: credentials.phone,
+      phone2: credentials.phone2,
+      email2: credentials.email2,
       imageurl: credentials.imageurl
     }
+   
+
+
+    this.user.updateProfile({
+      photoURL: credentials.imageurl,
+      displayName: credentials.firstName + ' ' + credentials.lastName
+    }).then(function() {
+      console.log('Profile updated successfully!');
+      
+      }, function(error) {
+        // An error happened.
+        console.log('An error happened. Profile update failed!');
+      });
+      
+      
     ref.child(this.user.uid).update(data).then(function (ref) {//use 'child' and 'set' combination to save data in your own generated key
       console.log("Updated");
       // let user = firebase.auth().currentUser;

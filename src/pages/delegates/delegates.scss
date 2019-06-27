@@ -1,5 +1,7 @@
 page-delegates {
-
+  ion-content{
+    background-color: #efefef !important;
+  }
  .list{
     border-bottom:1px solid #bdbdbd;
   }
@@ -9,7 +11,7 @@ page-delegates {
       }
       .odd{
 
-        background-color: white;
+        background-color: transparent;
       }
 
 

@@ -40,7 +40,7 @@
           <ion-item-group>
 
 
-            <ion-item class="listItems" text-wrap (click)="openItem(a,'AgendaDetailsPage')" *ngFor="let a of data1.slice().reverse(); let i = index;">
+            <ion-item class="listItems" text-wrap (click)="openItem(a,'AgendaDetailsPage')" *ngFor="let a of data1.slice().reverse(); let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
 
               <div>
                 <p>{{ a.activityDetails.time }}</p>
@@ -85,7 +85,7 @@
           <ion-item-group>
 
 
-            <ion-item  class="listItems" text-wrap (click)="openItem(a,'AgendaDetailsPage')" *ngFor="let a of data2.slice().reverse(); let i = index;">
+            <ion-item  class="listItems" text-wrap (click)="openItem(a,'AgendaDetailsPage')" *ngFor="let a of data2.slice().reverse(); let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
 
               <div>
                 <p >{{ a.activityDetails.time }}</p>

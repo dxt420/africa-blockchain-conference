@@ -7,6 +7,7 @@ import { NetworkProvider } from '../../providers/network/network';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { ProfilerPage } from '../profiler/profiler';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -52,30 +53,24 @@ export class HomePage implements OnInit {
 
 
     if(auth.isNewUser){
-      let alert = this.alertCtrl.create({
+    
+
+
+      Swal.fire({
         title: 'Complete Sign Up',
-        message: 'Proceed to Profile to fill in more details about you',
-        buttons: [
-          {
-            text: 'Go to Profile',
-            handler: () => {
-
-             
-              this.navCtrl.push(ProfilerPage);
-              
-            }
-          },
-          {
-            text: 'Later',
-            role: 'cancel',
-            handler: () => {
-              console.log('Cancel clicked');
-            }
-          },
-        ]
-      });
-
-      alert.present();
+        text: "Proceed to profile to fill in more details about yourself",
+        type: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Later',
+        confirmButtonText: 'Go to Profile'
+      }).then((result) => {
+        if (result.value) {
+          this.navCtrl.push(ProfilerPage);
+  
+        }
+      })
     }
 
 
@@ -157,6 +152,7 @@ export class HomePage implements OnInit {
                        activitySpeakers{
                           ... on Speaker{
                             title
+                            content
                             featuredImage{
                               sourceUrl
                             }

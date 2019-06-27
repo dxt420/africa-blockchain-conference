@@ -27,7 +27,7 @@ export class SocialPage implements AfterViewInit{
 
 
 
-                this.theHtmlString = this.sanitizer.bypassSecurityTrustHtml(`<a class="twitter-timeline" data-theme="light" data-link-color="#b33224" href="https://twitter.com/CryptoSavannah?ref_src=twsrc%5Etfw"> <p text-center>📝</p></a> `)
+                this.theHtmlString = this.sanitizer.bypassSecurityTrustHtml(`<a class="twitter-timeline" data-theme="light" data-link-color="#b33224" href="https://twitter.com/CryptoSavannah?ref_src=twsrc%5Etfw"> <p text-center>Loading feed from #AfricaBlockchainUG19</p></a> `)
                 // this.theHtmlString = this.sanitizer.bypassSecurityTrustResourceUrl(`https://twitframe.com/show?url=https://twitter.com/CryptoSavannah?ref_src=twsrc%5Etfw`)
 
 

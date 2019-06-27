@@ -1,8 +1,26 @@
 page-agenda-details {
+  ion-content{
+    background-color: #efefef !important;
+  }
+  .list{
+    border-bottom:1px solid #bdbdbd;
+  }
+
+    .even{
+        background-color: #dddd;
+      }
+      .odd{
+
+        background-color: #efefef;
+      }
+
 
     #title{
         color:#b33224; 
         font-weight: 600;
+      }
+      #speakerTitle{
+        color:#b33224; 
       }
 
 
@@ -27,5 +45,13 @@ page-agenda-details {
     ion-icon{
       color:#b33224;
       font-weight: 400; 
+    }
+
+    ion-label{
+      color:#666;
+    }
+
+    .cool{
+      font-size: 18px;
     }
 }

@@ -1,5 +1,7 @@
 page-sponsors {
-
+  ion-content{
+    background-color: #efefef !important;
+  }
   .list{
     border-bottom:1px solid #bdbdbd;
   }
@@ -18,7 +20,7 @@ page-sponsors {
       }
       .odd{
 
-        background-color: white;
+        background-color: transparent;
       }
 
 

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { NotificationsProvider } from '../../providers/notifications/notifications';
 
 
 import Swal from 'sweetalert2'
@@ -22,51 +21,40 @@ import Swal from 'sweetalert2'
 export class BusinessCardsPage {
 
 
-  public pending: any[] = [];
+ 
   public received: any[] = [];
-  public approved: any[] = [];
+
   
 
-  firstname;
-  lastname;
-
-  abc: string = "a";
 
 
 
   constructor(public navCtrl: NavController, 
               public auth: AuthProvider,
-              public notifications: NotificationsProvider,
               public navParams: NavParams) {
 
-                auth.getFirstName().then(data=>{
-                  this.firstname = data;
-                });
-            
-              
-            
-                auth.getLastName().then(data=>{
-                  this.lastname = data;
-                });
 
 
-                this.auth.getPendingCardsTwo().then(data=>{
+            
+            
+                          
+
+
+
+                this.auth.getCards().then(data=>{
 
                   console.log(data);
             
                   
                   if( data != ' '){
                   for (var key in data) {
-                  
-                      // do something
-                      console.log(data[key].userID);
-                      
-            
+                    console.log(data[key].userID);
+                    if(data[key].exchanged=="true"){
                       this.auth.getOtherUserProfile(data[key].userID).then(data=>{
                         console.log(data)
                     
 
-                        this.pending.push({
+                        this.received.push({
                        
                           fname: data.firstName,
                           lname: data.lastName,
@@ -74,14 +62,20 @@ export class BusinessCardsPage {
                           address: data.address,
                           phone: data.phone,
                           role: data.role,
-                      
+                          id: data.id,
                           imageurl: data.imageurl,
                           fcmtoken:data.fcmtoken
                         });
              
                       });
+                    }
+                      // do something
+                    
+                      
+            
+                      
 
-                      console.log(this.pending)
+                   console.log(this.received);
             
                    
                 }
@@ -92,125 +86,84 @@ export class BusinessCardsPage {
                 });
 
 
-                  this.auth.getApprovedCardsTwo().then(data=>{
-
-      console.log(data);
-
-      
-      if( data != ' '){
-      for (var key in data) {
-      
-          // do something
-
-          this.auth.getOtherUserProfile(data[key].userID).then(data=>{
-            console.log(data)
-        
-
-
-            this.approved.push({
-                       
-              fname: data.firstName,
-              lname: data.lastName,
-              company: data.company,
-              address: data.address,
-              phone: data.phone,
-              role: data.role,
-          
-              imageurl: data.imageurl,
-              fcmtoken:data.fcmtoken
-            });
- 
-      
-          });
-
-       
-    }
-  }
-
-      
-
-                  });
-
-
-
-                this.auth.getReceivedCards().then(data=>{
-
-                  console.log(data);
-
-                  
-                  if( data != ' '){
-                  for (var key in data) {
-                  
-                      // do something
-
-                      this.auth.getOtherUserProfile(data[key].userID).then(data=>{
-                    
-                    
-
-                        console.log(data)
-                 
-
-
-            this.received.push({
-                       
-              fname: data.firstName,
-              lname: data.lastName,
-              company: data.company,
-              address: data.address,
-              phone: data.phone,
-              role: data.role,
-          
-              imageurl: data.imageurl,
-              fcmtoken:data.fcmtoken
-            });
-                  
-                      });
-
-                  
-                }
-              }
-
-                  
-
-                });
+                
               
    
 
   }
 
-  approve(a){
-    this.notifications.approveCard(this.auth.user, this.firstname + " " + this.lastname,a.key,a.fcmtoken) 
-  }
  
-  decline(a){
-    this.notifications.declineCard(this.auth.user, a.key) 
-  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BusinessCardsPage');
   
   }
 
-  openItem(item: any,page: string) {
-    this.navCtrl.push(page.toString(), {
-      delegate: item
-    });
-
-
-  }
 
 
   popModal(a){
   
+    this.auth.getOtherUserProfile(a.id).then(data=>{
+      console.log(data)
+  
 
+      var company;
+      var role;
+      var address;
+      var phone;
+      var phone2;
 
-    Swal.fire(
-       a.fname + ' ' + a.lastName,
-       a.company +', ' + a.role + '.' + a.address,
-       a.phone
+      if(!data.company){
+        company = ""
+      }else{
+        company = data.company + ', ';
+      }
+
+      if(!data.role){
+        role = ""
+      }else{
+        role = data.role ;
+      }
+
+      if(!data.address){
+        address = ""
+      }else{
+        address = ' - ' + data.address ;
+      }
+
+      if(!data.phone){
+        phone = ""
+      }else{
+        phone = data.phone ;
+      }
+
+      if(!data.phone2){
+        phone2 = ""
+      }else{
+        phone2 = ' / ' + data.phone2 ;
+      }
+     
+     
+      if(company == "" && role == "" && address == "" && phone == "" && phone2 == ""){
+        Swal.fire(
+          data.firstName + ' ' + data.lastName,
+          'No business card details yet. You will able to see card details once '+ data.firstName + ' updates'
       
+       )
+      }else{
+        Swal.fire(
+          data.firstName + ' ' + data.lastName,
+          company  + role  + address,
+          phone + phone2
       
-      
-    )
+       )
+      }
+
+     
+
+    });
+
+    
   }
 }

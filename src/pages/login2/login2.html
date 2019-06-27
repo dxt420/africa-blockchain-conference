@@ -7,7 +7,7 @@
 <ion-content class="no-scroll" padding>
 
 
-    <div text-center>
+    <div>
       <img id="loginLogo" [src]="'assets/imgs/ll.png'" />
     </div>
   
@@ -34,14 +34,14 @@
     <div>
         <div style="color:red;" class="form-error">{{loginError}}</div>
   
-        <div> <button id="signInBtn" ion-button small padding [disabled]="!loginForm.valid"  type="submit">Sign in</button></div>
+        <div> <button id="signInBtn" ion-button large padding [disabled]="!loginForm.valid"  type="submit">Sign in</button></div>
   
     </div>
   
   </form>
   
   
-  <div>New User ? <span id="signUpLink" (click)="goToSignup()" >Sign Up </span></div>
+  <div class="newUser">New User ? <span id="signUpLink" (click)="goToSignup()" >Sign Up </span></div>
   
   
   

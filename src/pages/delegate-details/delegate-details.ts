@@ -67,49 +67,30 @@ export class DelegateDetailsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DelegateDetailsPage');
 
-    this.auth.getPendingCards().then(data=>{
+
+    this.auth.getCards().then(data=>{
 
       console.log(data);
 
       
       if( data != ' '){
       for (var key in data) {
-        if( this.xx.key == data[key].userID ) {
-          // do something
+        console.log(data[key].userID);
+        if(this.xx.key == data[key].userID ) {
 
-          this.requestPending = "pending";
+          if(data[key].exchanged=="false"){
+            this.requestPending = "pending";
+          }
+
+          if(data[key].exchanged=="true"){
+            this.requestPending = "approved";
+          }
+
+
         }
-       
-    }
-  }
-
-      
-
-    });
-
-
-    this.auth.getApprovedCards().then(data=>{
-
-
-
-      console.log(data);
-
-      
-      if( data != ' '){
-      for (var key in data) {
-        if( this.xx.key == data[key].userID ) {
-          // do something
-
-          this.requestPending = "approved";
-        }
-       
-    }
-  }
-
-
-   
-      
-
+        
+      }
+      }
     });
   }
 
@@ -120,34 +101,46 @@ export class DelegateDetailsPage {
 
 
       if(this.requestPending == "pending"){
-      let alert = this.alertCtrl.create({
-                    title: "Done Here",
-                    message: "Business card request already sent",
-                    buttons: [
-                      {
-                        text: 'Okay',
-                        role: 'cancel'
-                      }
-                    ]
-                  });
-          
-                  alert.present();
-      }else if(this.requestApproved == "approved"){
-        let alert = this.alertCtrl.create({
-          title: "Done Here",
-          message: "You already have this business card",
-          buttons: [
-            {
-              text: 'Okay',
-              role: 'cancel'
-            }
-          ]
-        });
+   
 
-        alert.present();
+                  Swal.fire({
+                    title: 'Done Here',
+                    text: "Business card request already sent",
+                    type: 'info',
+          
+                    confirmButtonColor: '#3085d6',
+          
+                    confirmButtonText: 'Done'
+                  }).then((result) => {
+                    if (result.value) {
+                      
+              
+                    }
+                  })
+
+
+
+      }else if(this.requestApproved == "approved"){
+       
+
+        Swal.fire({
+          title: 'Done Here',
+          text: "You already have this business card",
+          type: 'info',
+
+          confirmButtonColor: '#3085d6',
+
+          confirmButtonText: 'Done'
+        }).then((result) => {
+          if (result.value) {
+          
+    
+          }
+        })
       }
       else{
         var time = new Date().toLocaleString() + ""
+        // var time = new Date()
         console.log(time)
         this.notifications.requestCard(this.auth.user, this.firstname + " " + this.lastname,requestedUser.id,requestedUser.fcmtoken,this.dp,time) 
         Swal.fire({

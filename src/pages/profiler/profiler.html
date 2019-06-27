@@ -32,13 +32,22 @@
   <ion-label>Role </ion-label>
 <ion-input  style="margin-top: -15px;border-bottom: 1px solid;" type="text"  value="{{role}}" formControlName="role"></ion-input>
 
+<ion-label>Registered Email </ion-label>
+<ion-input  style="margin-top: -15px;border-bottom: 1px solid;" type="email"  value="{{email}}" disabled="true"></ion-input>
+
+
+<ion-label>Other Email </ion-label>
+<ion-input  style="margin-top: -15px;border-bottom: 1px solid;" type="email"  value="{{email2}}" formControlName="email2"></ion-input>
+
 
 <ion-label>Address </ion-label>
 <ion-input  style="margin-top: -15px;border-bottom: 1px solid;" type="text" value="{{address}}" formControlName="address" ></ion-input>
 
-<ion-label>Mobile Number </ion-label>
+<ion-label>Mobile Number 1</ion-label>
 <ion-input  style="margin-top: -15px;border-bottom: 1px solid;" type="text" value="{{phone}}" formControlName="phone" ></ion-input>
 
+<ion-label>Mobile Number 2</ion-label>
+<ion-input  style="margin-top: -15px;border-bottom: 1px solid;" type="text" value="{{phone2}}" formControlName="phone2" ></ion-input>
 
 
      
@@ -56,10 +65,10 @@
 
 
 
-        <div text-center padding-horizontal>
+        <div class="save" text-center padding-horizontal>
 
 
-            <button ion-button small padding type="submit">Save Changes</button>
+            <button ion-button large padding type="submit">Save Changes</button>
         </div>
     </form>
 </ion-content>

@@ -2,6 +2,10 @@ page-speaker-details {
 
 
 
+  .faces>ion-avatar{
+    float: left;
+    margin-right: 7px;
+}
 
   #profileImage {
     background-color: transparent;
@@ -16,8 +20,8 @@ page-speaker-details {
   }
 
   #profileImage ion-avatar img{
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
   }
 
 
@@ -28,27 +32,40 @@ page-speaker-details {
   }
 
 
-  .labels ion-label{
-    color:#adaaaa;width:20%;font-size: 80%;
+  ion-label{
+    color:#666;
   }
-
   .data{
    
-    font-size: 100%;width:75%;margin-bottom: -20px;margin-top: -20px
+    font-size: 100%;
+    margin-bottom: -20px;
+    margin-top: -20px
   }
 
-  .dataTitle{
-    width:75%;font-size: 110%;margin-bottom: -20px;margin-top: -20px;
-
+    .dataTitle{
+ 
+      font-size: 20px;
+      margin-bottom: -20px;
+      margin-top: -20px;
+      font-weight: 500;
+      color: #b33224;
+    
+      }
+    #aboutInfoDiv p{ 
+      border-radius:10px;
+      font-weight: 200;
+      font-size: 14px;
+      line-height: 20px;
   }
-
    
 
 
 ion-title{
   margin-right: 20%;
 }
-
+ion-content{
+  background-color: #efefef !important;
+}
 
 
 }

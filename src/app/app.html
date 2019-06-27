@@ -4,14 +4,14 @@
 
     <ion-navbar>
 
-      <ion-row *ngIf="userProfile">
+      <ion-row  *ngIf="userProfile">
         <ion-col id="sideMenuProfilePic">
-          <ion-avatar id="sideMenuImageAvatar" menuToggle start no-lines>
+          <ion-avatar *ngFor="let p of pages1" (click)="openPage(p)" id="sideMenuImageAvatar" menuToggle start no-lines>
             <img id="sideMenuImage" [src]="userProfile.photoURL">
           </ion-avatar>
         </ion-col>
 
-        <ion-col id="sideMenuNameCol">
+        <ion-col *ngFor="let p of pages1" (click)="openPage(p)" id="sideMenuNameCol">
           <ion-title id="sideMenuName"> {{userProfile.displayName}}</ion-title>
 
 <!-- 
@@ -37,7 +37,7 @@
   <ion-content style="color:white">
 
 
-    <div id="sideMenuLogo" text-center>
+    <div id="sideMenuLogo">
       <img [src]="'assets/imgs/ll.png'" />
     </div>
 

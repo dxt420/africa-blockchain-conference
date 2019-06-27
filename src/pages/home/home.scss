@@ -1,5 +1,13 @@
 page-home {
 
+  .even{
+    background-color: #dddd;
+  }
+  .odd{
+
+    background-color: transparent;
+  }
+
   .faces>ion-avatar{
     float: left;
     margin-right: 7px;
@@ -49,7 +57,7 @@ ion-content{
 }
 
 .listItems{
-  background-color: transparent;
+  // background-color: transparent;
 }
 
 .listItems div{

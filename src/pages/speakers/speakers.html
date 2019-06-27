@@ -12,14 +12,19 @@
 <ion-content>
   <div *ngIf="data">
     <ion-item no-lines class="list" (click)="openItem(post,'SpeakerDetailsPage')" *ngFor="let post of data; let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'"  >
-        <ion-avatar item-start>
-          <img src="{{ post.featuredImage.sourceUrl }}">
+        <ion-avatar *ngIf="post.featuredImage" item-start>
+          <img  src="{{ post.featuredImage.sourceUrl }}">
         </ion-avatar>
+
+        <ion-avatar *ngIf="post.featuredImage == null" item-start>
+            <img [src]="imgurl">
+          </ion-avatar>
+
         <h2>{{ post.title }}</h2>
 
 
 
-      <p>{{ post.speakerDetails.role }}, {{ post.speakerDetails.company }}</p>
+      <p>{{ post.speakerDetails.role }} - {{ post.speakerDetails.company }}</p>
 
 
 

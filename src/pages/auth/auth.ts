@@ -33,7 +33,7 @@ export class AuthPage {
     public menuCtrl: MenuController,
     fb: FormBuilder) {
 
-      this.menuCtrl.enable(false, 'myMenu');
+      // this.menuCtrl.enable(false, 'myMenu');
 
 
       

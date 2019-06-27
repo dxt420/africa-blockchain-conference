@@ -16,23 +16,23 @@
     </ion-avatar>
    </ion-item>
 
-    <div >
-        <ion-item class="labels"  no-lines>
-            <ion-label > Name</ion-label>
-        </ion-item>
+    <div text-center>
+     
         <p padding class="dataTitle">{{ xx.fname }} {{ xx.lname }}</p>
 
-        <ion-item *ngIf="xx.role" class="labels"  no-lines>
-            <ion-label > Position</ion-label>
+      
+        <p *ngIf="xx.role" xx.activityDetails.time>{{xx.role}}, {{ xx.company }}</p>
 
-        </ion-item>
-        <p padding class="data">{{xx.role}}</p>
-        <ion-item  *ngIf="xx.company" class="labels"  no-lines>
-            <ion-label > Company</ion-label>
+<br>
+        <ion-chip (click)="requestCard(xx)">
+          <ion-icon name="ios-apps"></ion-icon>
+          <ion-label>Request Business Card</ion-label>
+        </ion-chip>
+      </div>
 
-        </ion-item>
-        <p padding class="data">{{ xx.company }}</p>
-
+   
+        <!-- <div text-center>
+   
         <ion-item  *ngIf="xx.address" class="labels"  no-lines>
           <ion-label > Address</ion-label>
 
@@ -46,7 +46,7 @@
     <p padding class="data">{{ xx.phone }}</p>
 
         <br>
-      </div>
+      </div> -->
 
 
  
@@ -54,10 +54,7 @@
     
 
   <p  padding class="data">
-    <ion-chip (click)="requestCard(xx)">
-      <ion-icon name="ios-apps"></ion-icon>
-      <ion-label>Request Business Card</ion-label>
-    </ion-chip>
+   
   </p>
 
   

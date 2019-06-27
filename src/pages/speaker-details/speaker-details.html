@@ -14,41 +14,62 @@
 
       <ion-item id="profileImage" no-lines>
 
-         <ion-avatar>
-          <img src="{{ xx.featuredImage.sourceUrl }}">
-      </ion-avatar>
+   
+
+      <ion-avatar *ngIf="xx.featuredImage" >
+          <img  src="{{ xx.featuredImage.sourceUrl }}">
+        </ion-avatar>
+
+        <ion-avatar *ngIf="xx.featuredImage == null" >
+            <img [src]="imgurl">
+          </ion-avatar>
      </ion-item>
 
+     <div text-center>
      
+      <p padding text-center class="dataTitle">{{ xx.title }}</p>
 
-      <div >
-          <ion-item class="labels"  no-lines>
-              <ion-label > Name</ion-label>
-          </ion-item>
-          <p padding class="dataTitle">{{ xx.title }}</p>
+    
+      <p text-center>{{xx.speakerDetails.role}} - {{ xx.speakerDetails.company }}</p>
 
-          <ion-item class="labels"  no-lines>
-              <ion-label > Position</ion-label>
+      <p text-center>{{ xx.speakerDetails.country }}</p>
 
-          </ion-item>
-          <p padding class="data">{{xx.speakerDetails.role}}</p>
-          <ion-item class="labels"  no-lines>
-              <ion-label > Company</ion-label>
+    </div>
 
-          </ion-item>
-          <p padding class="data">{{ xx.speakerDetails.company }}</p>
 
-          <ion-item *ngIf="xx.speakerDetails.country"  class="labels"  no-lines>
-            <ion-label > Country</ion-label>
+    <ion-label class="labels" >About (Bio) </ion-label>
+
+    <div id="aboutInfoDiv" class="transparent" >
+
+        <div [innerHTML]="theHtmlString"></div>
+    
+        <br>
+
+
+    </div>
+
+
+
+      <!-- <div >
+         
+
+
+          <ion-item *ngIf="xx.speakerDetails.linkedin || xx.speakerDetails.twitter || xx.speakerDetails.website"  class="labels" >
+            <ion-label > Connect</ion-label>
 
         </ion-item>
-        <p padding class="data">{{ xx.speakerDetails.country }}</p>
-
-
-     
-
-          <br>
+        <div class="faces">
+          <ion-avatar *ngIf="xx.speakerDetails.linkedin" >
+            <ion-icon name="logo-linkedin"></ion-icon>
+          </ion-avatar>
+          <ion-avatar *ngIf="xx.speakerDetails.twitter" >
+            <ion-icon name="logo-twitter"></ion-icon>
+          </ion-avatar>
+          <ion-avatar *ngIf="xx.speakerDetails.website" >
+            <ion-icon name="globe"></ion-icon>
+          </ion-avatar>
         </div>
+        </div> -->
 
 
 

@@ -4,139 +4,36 @@
       <ion-title text-center>Business Cards</ion-title>
     </ion-navbar>
 
-    <ion-segment [(ngModel)]="abc" class="dateTabs" mode="ios">
-      <ion-segment-button id="leftTab" value="a">
-        APPROVED
-      </ion-segment-button>
-      <ion-segment-button id="midTab" value="b">
-        RECEIVED
-      </ion-segment-button>
-      <ion-segment-button id="rightTab" value="c">
-        PENDING
-      </ion-segment-button>
-  
-    </ion-segment>
   </ion-header>
 
   
 
 <ion-content>
+  <div *ngIf="received.length">
+    <ion-item no-lines class="list" (click)="popModal(a)"  *ngFor="let a of received; let i = index;"  >
+      <ion-avatar item-start>
+        <img src="{{ a.imageurl }}">
+      </ion-avatar>
 
-
-  <div [ngSwitch]="abc">
-
-      <div *ngSwitchCase="'a'">
-
-          <div *ngIf="approved.length">
-            <ion-item no-lines class="list" (click)="popModal(a)"  *ngFor="let a of approved; let i = index;"  >
-              <ion-avatar item-start>
-                <img src="{{ a.imageurl }}">
-              </ion-avatar>
-        
-              <h2>{{ a.fname }} {{ a.lname }}</h2>
-        
-        
-              <div *ngIf="a.company">
-              <p>{{ a.role }}</p>
-              <p>{{ a.company }}</p>
-              </div>
-        
-              <p padding class="data">
-                <ion-chip>
-                
-                  <ion-label>View Card</ion-label>
-                </ion-chip>
-        
-               
-              </p>
-        
-            </ion-item>
-        
-        
-            </div>
-        
-            <div *ngIf="!approved.length">
-            <p text-center>You haven't approved any business card request yet</p>
-          </div>
-    
-    
-        </div>
-    <div *ngSwitchCase="'b'">
-
-      <div *ngIf="received.length">
-        <ion-item no-lines class="list" (click)="openItem(a,'DelegateDetailsPage')"  *ngFor="let a of received; let i = index;"  >
-          <ion-avatar item-start>
-            <img src="{{ a.imageurl }}">
-          </ion-avatar>
-    
-          <h2>{{ a.fname }} {{ a.lname }}</h2>
-    
-    
-          <div *ngIf="a.company">
-          <p>{{ a.role }}</p>
-          <p>{{ a.company }}</p>
-          </div>
-    
-          <p padding class="data">
-            <ion-chip (click)="approve(a)">
-            
-              <ion-label>Approve</ion-label>
-            </ion-chip>
-    
-            <ion-chip (click)="decline(a)">
-            
-              <ion-label>Decline</ion-label>
-            </ion-chip>
-          </p>
-    
-        </ion-item>
-    
-    
-        </div>
-    
-        <div *ngIf="!received.length">
-        <p text-center>You haven't received business cards yet</p>
-      </div>
-
-
-    </div>
-
-
-    <div *ngSwitchCase="'c'">
-
-      <div *ngIf="pending.length">
-        <ion-item no-lines class="list" (click)="openItem(a,'DelegateDetailsPage')"  *ngFor="let a of pending; let i = index;"  >
-          <ion-avatar item-start>
-            <img src="{{ a.imageurl }}">
-          </ion-avatar>
-    
-          <h2>{{ a.fname }} {{ a.lname }}</h2>
-   
+      <h2>{{ a.fname }} {{ a.lname }}</h2>
       
-    
-          <div *ngIf="a.company">
-          <p>{{ a.role }}</p>
-          <p>{{ a.company }}</p>
-          </div>
-    
-     
-    
-        </ion-item>
 
-
-        
-    
-    
-        </div>
-    
-        <div *ngIf="!pending.length">
-        <p text-center>You have not requested any business cards yet</p>
+      <div *ngIf="a.company">
+      <p>{{ a.role }}</p>
+      <p>{{ a.company }}</p>
       </div>
+
+      
+
+    </ion-item>
+
+    
 
 
     </div>
-
-
-  </div>
+    <div *ngIf="!received.length">
+      <p text-center>Received business cards will appear here </p>
+  
+    </div>
   
 </ion-content>

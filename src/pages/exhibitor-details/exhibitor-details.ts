@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DomSanitizer} from '@angular/platform-browser';
 
 /**
- * Generated class for the SpeakerDetailsPage page.
+ * Generated class for the ExhibitorDetailsPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,11 +11,10 @@ import { DomSanitizer} from '@angular/platform-browser';
 
 @IonicPage()
 @Component({
-  selector: 'page-speaker-details',
-  templateUrl: 'speaker-details.html',
+  selector: 'page-exhibitor-details',
+  templateUrl: 'exhibitor-details.html',
 })
-export class SpeakerDetailsPage {
-
+export class ExhibitorDetailsPage {
 
   data;
   xx;
@@ -25,7 +24,7 @@ export class SpeakerDetailsPage {
   constructor(public navCtrl: NavController, 
     private sanitizer: DomSanitizer,          
     public navParams: NavParams) {
-    this.xx = navParams.get('speaker');
+    this.xx = navParams.get('exhibitor');
 
     this.theHtmlString = this.sanitizer.bypassSecurityTrustHtml(this.xx.content);
   }
@@ -34,7 +33,7 @@ export class SpeakerDetailsPage {
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SpeakerDetailsPage');
+    console.log('ionViewDidLoad exhibitorDetailsPage');
   }
 
   cleanHTML(html: string ){

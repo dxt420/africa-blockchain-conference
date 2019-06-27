@@ -66,6 +66,7 @@ import { ProfilerPage } from '../pages/profiler/profiler';
 
 
 
+
 firebase.initializeApp({
   apiKey: "AIzaSyBt3djOIaAUZE4_BXNvCabeYKccywp5dk8",
   authDomain: "africa-blockchain.firebaseapp.com",
@@ -83,6 +84,7 @@ firebase.initializeApp({
     ContactPage,
     HomePage,
     TabsPage,
+  
     // AuthPage,
     // StarterPage,
     // SocialPage,
@@ -111,7 +113,8 @@ firebase.initializeApp({
     StarterPageModule,
     BusinessCardsPageModule,
     Login2PageModule,
-    ProfilerPageModule
+    ProfilerPageModule,
+    
 
 
 

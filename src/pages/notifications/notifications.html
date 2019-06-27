@@ -21,7 +21,7 @@
 <ion-content>
   <div *ngIf="data.length">
       <div *ngFor="let a of data.slice().reverse(); let i = index;">
-    <ion-item *ngIf="a.type=='BCard'" (click)="openBusinessCardsPage()" no-lines class="list">
+    <ion-item *ngIf="a.type=='BCard'" (click)="popModal2(a)"  no-lines class="list">
 
       
     
@@ -35,7 +35,7 @@
         
             <p>{{ a.body }}</p>
 
-            <p> {{ a.time }}</p>
+            <p> {{ a.time  | timeAgo}}</p>
          
       
 
@@ -55,11 +55,14 @@
     
         <p>{{ a.body }}</p>
 
-        <p> {{ a.time }}</p>
+        <p> {{ a.time  | timeAgo}}</p>
      
   
 
 </ion-item>
+
+
+
   </div>
 
     
