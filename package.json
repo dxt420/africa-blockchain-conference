@@ -26,6 +26,7 @@
     "@ionic-native/crop": "^4.20.0",
     "@ionic-native/facebook": "^4.20.0",
     "@ionic-native/fcm": "^4.20.0",
+    "@ionic-native/file-opener": "^4.20.0",
     "@ionic-native/google-plus": "^4.20.0",
     "@ionic-native/image-picker": "^4.20.0",
     "@ionic-native/linkedin": "^4.20.0",
@@ -53,6 +54,7 @@
     "cordova-plugin-customurlscheme": "4.4.0",
     "cordova-plugin-facebook4": "4.2.1",
     "cordova-plugin-fcm-with-dependecy-updated": "^2.4.0",
+    "cordova-plugin-file-opener2": "2.2.0",
     "cordova-plugin-googleplus": "git+https://github.com/pcsantana/cordova-plugin-googleplus.git",
     "cordova-plugin-inappbrowser": "3.0.0",
     "cordova-plugin-ionic-webview": "1.2.1",
@@ -121,11 +123,14 @@
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.228396331551-gmvqm4denckjjeisa5i2p391okkjmqhb",
         "WEB_APPLICATION_CLIENT_ID": "228396331551-gmvqm4denckjjeisa5i2p391okkjmqhb.apps.googleusercontent.com"
       },
-      "cordova-plugin-badge": {}
+      "cordova-plugin-badge": {},
+      "cordova-plugin-file-opener2": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      }
     },
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

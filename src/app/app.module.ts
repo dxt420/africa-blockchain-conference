@@ -61,7 +61,7 @@ import { ProfilerPageModule } from '../pages/profiler/profiler.module';
 import { ProfilerPage } from '../pages/profiler/profiler';
 // import { AuthPageModule } from '../pages/auth/auth.module';
 // import { HomePageModule } from '../pages/home/home.module';
-
+import { FileOpener } from '@ionic-native/file-opener';
 
 
 
@@ -154,7 +154,8 @@ firebase.initializeApp({
     Crop,
     Badge,
     ImagePicker,
-    NotificationsProvider
+    NotificationsProvider,
+    FileOpener
   ]
 })
 export class AppModule {

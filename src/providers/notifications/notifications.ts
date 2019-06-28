@@ -59,7 +59,7 @@ export class NotificationsProvider {
 
     let notifcationObj: any = {
       "notification": {
-        "title": "Exhange info with " + requestedUserName,
+        "title": "Exhange Business Card" ,
         "body" :  "Would you like to exchange contact information with " + requestedUserName,
         "sound": "default",
         "click_action": "FCM_PLUGIN_ACTIVITY",
@@ -67,7 +67,7 @@ export class NotificationsProvider {
         
       },
       "data": {
-        "title": "Exhange info with " + requestedUserName,
+        "title": "Exhange Business Card" ,
         "body" :  "Would you like to exchange contact information with " + requestedUserName,
         "imgurl":imgurl+"",
         "type" : "BCard",
@@ -143,7 +143,7 @@ export class NotificationsProvider {
 
     let notifcationObj: any = {
       "notification": {
-        "title": "Business Card Request Approved",
+        "title": "Business Card Request",
         "body" : approveUserName + " has approved your business card exchange request",
         "sound": "default",
         "click_action": "FCM_PLUGIN_ACTIVITY",
@@ -153,7 +153,7 @@ export class NotificationsProvider {
         "title": "Business Card Request",
         "body" : approveUserName + " has approved your business card exchange request",
         "imgurl":imgurl+"",
-        "type" : "BCardApproved",
+        "type" : "BCard",
         "time": time,
         "uid": user.uid
       },

@@ -21,7 +21,7 @@
 <ion-content>
   <div *ngIf="data.length">
       <div *ngFor="let a of data.slice().reverse(); let i = index;">
-    <ion-item *ngIf="a.type=='BCard'" (click)="popModal2(a)"  no-lines class="list">
+    <ion-item text-wrap *ngIf="a.type=='BCard'" (click)="popModal2(a)"  no-lines class="list">
 
       
     
@@ -42,7 +42,7 @@
     </ion-item>
 
 
-    <ion-item *ngIf="a.type!='BCard'" (click)="popModal(a)" no-lines class="list">
+    <ion-item text-wrap *ngIf="a.type!='BCard'" (click)="popModal(a)" no-lines class="list">
 
       
     

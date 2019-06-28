@@ -33,6 +33,7 @@ export class SponsorsPage implements OnInit{
         posts: sponsors(first: 100) {
           nodes{
             title
+            content
             featuredImage{
               sourceUrl
             }
@@ -46,7 +47,7 @@ export class SponsorsPage implements OnInit{
     }).subscribe(({data, loading}) => {
       // this.loading = loading;
       this.data = data['posts'].nodes;
-
+      this.data.sort((a, b) => a.title.localeCompare(b.title));
     });
   }
 

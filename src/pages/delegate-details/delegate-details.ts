@@ -21,7 +21,7 @@ export class DelegateDetailsPage {
   xx;
   receiverToken;
   requestPending;
-  requestApproved;
+
 
   meEmail;
 
@@ -41,7 +41,7 @@ export class DelegateDetailsPage {
         console.log(this.xx);
 
         
-
+     
 
         
 
@@ -67,7 +67,6 @@ export class DelegateDetailsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DelegateDetailsPage');
 
-
     this.auth.getCards().then(data=>{
 
       console.log(data);
@@ -75,8 +74,10 @@ export class DelegateDetailsPage {
       
       if( data != ' '){
       for (var key in data) {
+        console.log(data);
         console.log(data[key].userID);
-        if(this.xx.key == data[key].userID ) {
+        console.log(this.xx.id);
+        if(this.xx.id == data[key].userID ) {
 
           if(data[key].exchanged=="false"){
             this.requestPending = "pending";
@@ -92,6 +93,7 @@ export class DelegateDetailsPage {
       }
       }
     });
+ 
   }
 
 
@@ -120,25 +122,7 @@ export class DelegateDetailsPage {
 
 
 
-      }else if(this.requestApproved == "approved"){
-       
-
-        Swal.fire({
-          title: 'Done Here',
-          text: "You already have this business card",
-          type: 'info',
-
-          confirmButtonColor: '#3085d6',
-
-          confirmButtonText: 'Done'
-        }).then((result) => {
-          if (result.value) {
-          
-    
-          }
-        })
-      }
-      else{
+      }else{
         var time = new Date().toLocaleString() + ""
         // var time = new Date()
         console.log(time)

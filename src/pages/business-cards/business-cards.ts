@@ -27,6 +27,8 @@ export class BusinessCardsPage {
   
 
 
+  data;
+
 
 
   constructor(public navCtrl: NavController, 
@@ -35,10 +37,7 @@ export class BusinessCardsPage {
 
 
 
-            
-            
-                          
-
+         
 
 
                 this.auth.getCards().then(data=>{
@@ -60,7 +59,10 @@ export class BusinessCardsPage {
                           lname: data.lastName,
                           company: data.company,
                           address: data.address,
+                          email: data.email,
+                          email2: data.email2,
                           phone: data.phone,
+                          phone2: data.phone2,
                           role: data.role,
                           id: data.id,
                           imageurl: data.imageurl,
@@ -76,6 +78,9 @@ export class BusinessCardsPage {
                       
 
                    console.log(this.received);
+
+
+                   this.received.sort((a, b) => a.fname.localeCompare(b.fname));
             
                    
                 }
@@ -97,6 +102,9 @@ export class BusinessCardsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BusinessCardsPage');
+
+
+   
   
   }
 
@@ -165,5 +173,14 @@ export class BusinessCardsPage {
     });
 
     
+  }
+
+
+
+  openItem(item: any) {
+    this.navCtrl.push('DelegateDetailsPage', {
+      delegate: item
+    });
+
   }
 }

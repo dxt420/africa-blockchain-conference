@@ -8,6 +8,7 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { ProfilerPage } from '../profiler/profiler';
 import Swal from 'sweetalert2'
+import { DataProvider } from '../../providers/data/data';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class HomePage implements OnInit {
     public loadingCtrl: LoadingController,
     public network: NetworkProvider,
     public alertCtrl: AlertController,
-    private apollo: Apollo
+    private apollo: Apollo,
+    public db: DataProvider, 
   ) {
 
 
@@ -80,129 +82,407 @@ export class HomePage implements OnInit {
 
   pages: string = "pageA";
 
-  ngOnInit() {
-    this.apollo.query({
-      query: gql`query activities {
-        wed: days(where: {name:"Day One - Wednesday July 3, 2019"}){
-                nodes{
+  // ngOnInit() {
+  //   this.apollo.query({
+  //     query: gql`query activities {
+  //       wed: days(where: {name:"Day One - Wednesday July 3, 2019"}){
+  //               nodes{
 
 
-            a:     activities(first:100){
-                    nodes{
-                      title
-                      activityDetails{
-                        presentations{
-                          docTitle
-                          docFile {
-                              guid
-                              mimeType
-                            }
-                          }
-                        time
-                        activitySpeakers{
-                          ... on Speaker{
-                            title
-                            featuredImage{
-                              sourceUrl
-                            }
-                            speakerDetails{
-                              company
-                              country
-                              fieldGroupName
-                              linkedin
-                              role
-                              twitter
-                              website
-                          }
+  //           a:     activities(first:100){
+  //                   nodes{
+  //                     title
+  //                     activityDetails{
+  //                       presentations{
+  //                         docTitle
+  //                         docFile {
+  //                             guid
+  //                             mimeType
+  //                           }
+  //                         }
+  //                       time
+  //                       activitySpeakers{
+  //                         ... on Speaker{
+  //                           title
+  //                           featuredImage{
+  //                             sourceUrl
+  //                           }
+  //                           speakerDetails{
+  //                             company
+  //                             country
+  //                             fieldGroupName
+  //                             linkedin
+  //                             role
+  //                             twitter
+  //                             website
+  //                         }
 
-                        }
-                        }
+  //                       }
+  //                       }
 
-                      }
-                      days{
-                        nodes{
-                          name
-                        }
-                      }
-                      venues{
-                        nodes{
-                          name
-                        }
-                      }
-                    }
-                  }
-                }
-        },
-        thur: days(where: {name:"Day Two – Thursday July 4, 2019"}){
-                nodes{
-
-
-                  a:    activities(first:100){
-                    nodes{
-                      title
-                      activityDetails{
-                        presentations{
-                          docTitle
-                          docFile {
-                              guid
-                              mimeType
-                            }
-                          }
-                        time
-                       activitySpeakers{
-                          ... on Speaker{
-                            title
-                            content
-                            featuredImage{
-                              sourceUrl
-                            }
-                            speakerDetails{
-                              company
-                              country
-                              fieldGroupName
-                              linkedin
-                              role
-                              twitter
-                              website
-                          }
-
-                        }
-                        }
-
-                      }
-                      days{
-                        nodes{
-                          name
-                        }
-                      }
-                      venues{
-                        nodes{
-                          name
-                        }
-                      }
-                    }
-                  }
-                }
-        }
-      }`
-    }).subscribe(({ data, loading }) => {
-      this.loading = loading;
-      this.data1 = data['wed'].nodes[0]['a'].nodes;
-      this.data2 = data['thur'].nodes[0]['a'].nodes;
+  //                     }
+  //                     days{
+  //                       nodes{
+  //                         name
+  //                       }
+  //                     }
+  //                     venues{
+  //                       nodes{
+  //                         name
+  //                       }
+  //                     }
+  //                   }
+  //                 }
+  //               }
+  //       },
+  //       thur: days(where: {name:"Day Two – Thursday July 4, 2019"}){
+  //               nodes{
 
 
-      // console.log(data['wed'].nodes[0]['a'].nodes);
-      data['thur'].nodes[0]['a'].nodes.forEach(element => {
-        console.log(element);
-        console.log(element.activityDetails);
-        console.log(element.activityDetails.activitySpeakers);
-      });
+  //                 a:    activities(first:100){
+  //                   nodes{
+  //                     title
+  //                     activityDetails{
+  //                       presentations{
+  //                         docTitle
+  //                         docFile {
+  //                             guid
+  //                             mimeType
+  //                           }
+  //                         }
+  //                       time
+  //                      activitySpeakers{
+  //                         ... on Speaker{
+  //                           title
+  //                           content
+  //                           featuredImage{
+  //                             sourceUrl
+  //                           }
+  //                           speakerDetails{
+  //                             company
+  //                             country
+  //                             fieldGroupName
+  //                             linkedin
+  //                             role
+  //                             twitter
+  //                             website
+  //                         }
+
+  //                       }
+  //                       }
+
+  //                     }
+  //                     days{
+  //                       nodes{
+  //                         name
+  //                       }
+  //                     }
+  //                     venues{
+  //                       nodes{
+  //                         name
+  //                       }
+  //                     }
+  //                   }
+  //                 }
+  //               }
+  //       }
+  //     }`
+  //   }).subscribe(({ data, loading }) => {
+  //     this.loading = loading;
+  //     this.data1 = data['wed'].nodes[0]['a'].nodes;
+  //     this.data2 = data['thur'].nodes[0]['a'].nodes;
+
+
+  //     // console.log(data['wed'].nodes[0]['a'].nodes);
+  //     data['thur'].nodes[0]['a'].nodes.forEach(element => {
+  //       console.log(element);
+  //       console.log(element.activityDetails);
+  //       console.log(element.activityDetails.activitySpeakers);
+  //     });
       
 
 
 
-    });
+  //   });
+  // }
+
+
+
+
+
+//   ngOnInit() {
+//     this.apollo.query({
+//       query: gql`query activities {
+//         wed: days(where: {name:"Day One - Wednesday July 3, 2019"}){
+//                 nodes{
+
+
+//             a:     activities(first:100){
+//                     nodes{
+//                       title
+//                       activityDetails{
+//                         presentations{
+//                           docTitle
+//                           docFile {
+//                               guid
+//                               mimeType
+//                             }
+//                           }
+//                         time
+//                         activitySpeakers{
+//                           ... on Speaker{
+//                             title
+//                             featuredImage{
+//                               sourceUrl
+//                             }
+//                             speakerDetails{
+//                               company
+//                               country
+//                               fieldGroupName
+//                               linkedin
+//                               role
+//                               twitter
+//                               website
+//                           }
+
+//                         }
+//                         }
+
+//                       }
+//                       days{
+//                         nodes{
+//                           name
+//                         }
+//                       }
+//                       venues{
+//                         nodes{
+//                           name
+//                         }
+//                       }
+//                     }
+//                   }
+//                 }
+//         },
+//         thur: days(where: {name:"Day Two – Thursday July 4, 2019"}){
+//                 nodes{
+
+
+//                   a:    activities(first:100){
+//                     nodes{
+//                       title
+//                       activityDetails{
+//                         presentations{
+//                           docTitle
+//                           docFile {
+//                               guid
+//                               mimeType
+//                             }
+//                           }
+//                         time
+//                        activitySpeakers{
+//                           ... on Speaker{
+//                             title
+//                             content
+//                             featuredImage{
+//                               sourceUrl
+//                             }
+//                             speakerDetails{
+//                               company
+//                               country
+//                               fieldGroupName
+//                               linkedin
+//                               role
+//                               twitter
+//                               website
+//                           }
+
+//                         }
+//                         }
+
+//                       }
+//                       days{
+//                         nodes{
+//                           name
+//                         }
+//                       }
+//                       venues{
+//                         nodes{
+//                           name
+//                         }
+//                       }
+//                     }
+//                   }
+//                 }
+//         }
+//       }`
+//     }).subscribe(({ data, loading }) => {
+//       this.loading = loading;
+//       this.data1 = data['wed'].nodes[0]['a'].nodes;
+//       this.data2 = data['thur'].nodes[0]['a'].nodes;
+
+
+//       // console.log(data['wed'].nodes[0]['a'].nodes);
+//       data['thur'].nodes[0]['a'].nodes.forEach(element => {
+//         console.log(element);
+//         console.log(element.activityDetails);
+//         console.log(element.activityDetails.activitySpeakers);
+//       });
+      
+
+
+
+//     });
+
+
+
+
+//     wed: days(where: {name:"Day One - Wednesday July 3, 2019"}){
+//       nodes{
+
+
+//   a:     activities(first:100){
+//           nodes{
+//             title
+//             activityDetails{
+//               presentations{
+//                 docTitle
+//                 docFile {
+//                     guid
+//                     mimeType
+//                   }
+//                 }
+//               time
+//               activitySpeakers{
+//                 ... on Speaker{
+//                   title
+//                   featuredImage{
+//                     sourceUrl
+//                   }
+//                   speakerDetails{
+//                     company
+//                     country
+//                     fieldGroupName
+//                     linkedin
+//                     role
+//                     twitter
+//                     website
+//                 }
+
+//               }
+//               }
+
+//             }
+//             days{
+//               nodes{
+//                 name
+//               }
+//             }
+//             venues{
+//               nodes{
+//                 name
+//               }
+//             }
+//           }
+//         }
+//       }
+// },
+// thur: days(where: {name:"Day Two – Thursday July 4, 2019"}){
+//       nodes{
+
+
+//         a:    activities(first:100){
+//           nodes{
+//             title
+//             activityDetails{
+//               presentations{
+//                 docTitle
+//                 docFile {
+//                     guid
+//                     mimeType
+//                   }
+//                 }
+//               time
+//              activitySpeakers{
+//                 ... on Speaker{
+//                   title
+//                   content
+//                   featuredImage{
+//                     sourceUrl
+//                   }
+//                   speakerDetails{
+//                     company
+//                     country
+//                     fieldGroupName
+//                     linkedin
+//                     role
+//                     twitter
+//                     website
+//                 }
+
+//               }
+//               }
+
+//             }
+//             days{
+//               nodes{
+//                 name
+//               }
+//             }
+//             venues{
+//               nodes{
+//                 name
+//               }
+//             }
+//           }
+//         }
+//       }
+// }
+//  }
+
+
+  ngOnInit() {
+
+    this.db.activityQuery().then(data=>{
+      console.log('value', data);
+   
+        var x = data;
+        console.log(x);
+        x = x.replace(/\r?\n?/g, '')
+   
+        console.log(x);
+        x = x.replace(/\\/g, '');
+        console.log(x)
+
+    this.apollo.query({
+      query: gql`query activities {
+     
+      
+    ${x}
+
+
+      }`
+    }).subscribe(({data, loading}) => {
+      this.loading = loading;
+            this.data1 = data['wed'].nodes[0]['a'].nodes;
+            this.data2 = data['thur'].nodes[0]['a'].nodes;
+      
+      
+            // console.log(data['wed'].nodes[0]['a'].nodes);
+            data['thur'].nodes[0]['a'].nodes.forEach(element => {
+              console.log(element);
+              console.log(element.activityDetails);
+              console.log(element.activityDetails.activitySpeakers);
+            });
+  });
+    
+});
+
+  
   }
+
+
+
+
 
   reload() {
     // this.loading = this.loadingCtrl.create({ content: "Connecting" });

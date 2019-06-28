@@ -18,9 +18,18 @@
 
 
   <ion-content>
+      <!-- <ion-searchbar [formControl]="searchControl" (ionChange)="onSearchInput()"></ion-searchbar> -->
+      <!-- <ion-searchbar placeholder="Search" [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar> -->
     <div *ngIf="data">
+    
+       
       <ion-item no-lines class="list" (click)="openItem(a,'DelegateDetailsPage')" *ngFor="let a of data; let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'"  >
-          <ion-avatar item-start>
+          <!-- <div *ngIf="!data?.length > 0">
+              <p text-center>No results found 😟</p>
+          
+            </div> -->
+
+        <ion-avatar item-start>
             <img src="{{ a.imageurl }}">
           </ion-avatar>
           <h2>{{ a.fname }} {{ a.lname }}</h2>

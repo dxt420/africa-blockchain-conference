@@ -21,18 +21,41 @@
         <p padding class="dataTitle">{{ xx.fname }} {{ xx.lname }}</p>
 
       
-        <p *ngIf="xx.role" xx.activityDetails.time>{{xx.role}}, {{ xx.company }}</p>
+        <p ><span *ngIf="xx.role"> {{xx.role}},</span> {{ xx.company }}</p>
 
 <br>
+<div *ngIf="requestPending!='approved'"  >
         <ion-chip (click)="requestCard(xx)">
           <ion-icon name="ios-apps"></ion-icon>
           <ion-label>Request Business Card</ion-label>
         </ion-chip>
+
+      </div>
       </div>
 
    
-        <!-- <div text-center>
-   
+        <div *ngIf="requestPending=='approved'">
+          <ion-item  *ngIf="xx.email" class="labels"  no-lines>
+            <ion-label > Email</ion-label>
+  
+        </ion-item>
+        <p padding class="data">{{ xx.email }}</p>
+
+
+
+
+        <ion-item  *ngIf="xx.email2" class="labels"  no-lines>
+          <ion-label > Email - (Secondary)</ion-label>
+
+      </ion-item>
+      <p padding class="data">{{ xx.email2 }}</p>
+
+
+
+
+
+
+
         <ion-item  *ngIf="xx.address" class="labels"  no-lines>
           <ion-label > Address</ion-label>
 
@@ -45,8 +68,21 @@
     </ion-item>
     <p padding class="data">{{ xx.phone }}</p>
 
+
+    <ion-item  *ngIf="xx.phone2" class="labels"  no-lines>
+      <ion-label > Phone - (Other)</ion-label>
+
+  </ion-item>
+  <p padding class="data">{{ xx.phone2 }}</p>
+
+
+ 
+ 
+
+
+
         <br>
-      </div> -->
+      </div>
 
 
  

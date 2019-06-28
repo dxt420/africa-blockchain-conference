@@ -33,6 +33,8 @@ export class NotificationsPage {
 
 dp;
 
+received: any[] = [];
+
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -123,14 +125,23 @@ dp;
               title: "Done Here",
               text: "You already have this card. Please check under your business cards to view" ,
               type: 'info',
-              showCancelButton: false,
-              confirmButtonColor: '#3085d6',
-    
-              confirmButtonText: 'Okay',
-       
+              showCancelButton: true,
+              confirmButtonColor: '#b33224',    
+              confirmButtonText: 'View Card',
+              cancelButtonText: 'Okay'
             }).then((result) => {
               if (result.value) {
-             
+                this.auth.getOtherUserProfile(a.id).then(data=>{
+                  console.log(data)
+
+                  this.navCtrl.push('DelegateDetailsPage', {
+                    delegate: data
+                  });
+
+
+
+
+                  });
               
               }
             })

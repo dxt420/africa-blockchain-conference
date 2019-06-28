@@ -56,6 +56,18 @@
       <p>{{ post.speakerDetails.role }}, {{ post.speakerDetails.company }}</p>
 
       </ion-item>
+
+
+      <ion-label *ngIf="xx.activityDetails.presentations">Presentations </ion-label>
+      <ion-item text-wrap no-lines class="list" (click)="openDoc(post)" *ngFor="let post of xx.activityDetails.presentations; let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'"  >
+      
+        <ion-icon name="document"></ion-icon>
+        <span style="padding-left: 10px">  {{ post.docTitle }}</span>
+
+
+
+
+      </ion-item>
       
   
  

@@ -10,7 +10,7 @@
 
 <ion-content>
   <div *ngIf="received.length">
-    <ion-item no-lines class="list" (click)="popModal(a)"  *ngFor="let a of received; let i = index;"  >
+    <ion-item no-lines class="list" (click)="openItem(a)"  *ngFor="let a of received; let i = index;"  >
       <ion-avatar item-start>
         <img src="{{ a.imageurl }}">
       </ion-avatar>

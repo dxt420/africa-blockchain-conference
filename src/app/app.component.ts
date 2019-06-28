@@ -160,6 +160,34 @@ export class MyApp {
           
                 }
               })
+
+
+
+              // Swal.fire("A wild Pikachu appeared! What do you want to do?", {
+              //   buttons: {
+              //     cancel: "Run away!",
+              //     catch: {
+              //       text: "Throw Pokéball!",
+              //       value: "catch",
+              //     },
+              //     defeat: true,
+              //   },
+              // })
+              // .then((value) => {
+              //   switch (value) {
+               
+              //     case "defeat":
+              //       swal("Pikachu fainted! You gained 500 XP!");
+              //       break;
+               
+              //     case "catch":
+              //       swal("Gotcha!", "Pikachu was caught!", "success");
+              //       break;
+               
+              //     default:
+              //       swal("Got away safely!");
+              //   }
+              // });
       
       
       
@@ -252,7 +280,7 @@ export class MyApp {
         { title: 'Delegates', component: 'DelegatesPage', icon: "ios-people" },
 
 
-
+        { title: 'Exhibitors', component: 'ExhibitorsPage', icon: "aperture" },
         { title: 'Sponsors', component: 'SponsorsPage', icon: "ios-ribbon" },
         { title: 'Business Cards', component: 'BusinessCardsPage', icon: "ios-apps" },
         // { title: 'Send Feedback', component: 'FeedbackPage', icon: "ios-paper-plane" },

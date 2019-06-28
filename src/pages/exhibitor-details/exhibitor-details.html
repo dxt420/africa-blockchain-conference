@@ -31,15 +31,14 @@
 
 
 
-    <div id="aboutInfoDiv" class="transparent" >
+    <div *ngIf="this.xx.content"  id="aboutInfoDiv" class="transparent" >
 
-        <div [innerHTML]="theHtmlString"></div>
-    
-        <br>
+      <div [innerHTML]="theHtmlString"></div>
+  
+      <br>
 
 
-    </div>
-
+  </div>
 
 
 </ion-content>
